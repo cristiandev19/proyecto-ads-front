@@ -1,1 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+.flex {
+  display: flex;
+}
+
+.list {
+  list-style: none;
+  a {
+    text-decoration: none;
+  }
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.spacer {
+  display: flex;
+  flex: 1 1 auto;
+}
