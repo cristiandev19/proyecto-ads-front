@@ -1,0 +1,55 @@
+
+
+
+<div class="buttons-action">
+  <button mat-button color="secondary">Volver a principal</button>
+
+  <button mat-raised-button color="primary">Confirmar</button>
+</div>
+
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="fecha">
+    <th mat-header-cell *matHeaderCellDef> Fecha </th>
+    <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="hora">
+    <th mat-header-cell *matHeaderCellDef> Hora </th>
+    <td mat-cell *matCellDef="let element"> {{element.hora}} </td>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="nro_boleta">
+    <th mat-header-cell *matHeaderCellDef> Nro. boleta </th>
+    <td mat-cell *matCellDef="let element"> {{element.nro_boleta}} </td>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="cliente">
+    <th mat-header-cell *matHeaderCellDef> Cliente </th>
+    <td mat-cell *matCellDef="let element"> {{element.cliente}} </td>
+  </ng-container>
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="total_venta">
+    <th mat-header-cell *matHeaderCellDef> Total venta </th>
+    <td mat-cell *matCellDef="let element"> {{element.total_venta}} </td>
+  </ng-container>
+
+
+  <!-- Position Column -->
+  <ng-container matColumnDef="mes">
+    <th mat-header-cell *matHeaderCellDef> Mes </th>
+    <td mat-cell *matCellDef="let element"> {{element.mes}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
