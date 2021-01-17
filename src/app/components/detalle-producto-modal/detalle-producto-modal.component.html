@@ -1,0 +1,21 @@
+<h1 mat-dialog-title> Mi modal</h1>
+<div mat-dialog-content>
+  <mat-list role="list">
+    <mat-list-item role="listitem" *ngFor="let detalle of detalles">
+      <span>
+        {{ detalle.label }}
+      </span>
+      <span class="spacer"></span>
+      <span>
+        {{ detalle.value }}
+      </span>
+      <!-- <button mat-raised-button (click)="handleOpenDetailModal(producto)">Ir</button> -->
+    </mat-list-item>
+  </mat-list>
+  <!-- <p>
+    This dialog showcases the title, close, content and actions elements.
+  </p> -->
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</div>
