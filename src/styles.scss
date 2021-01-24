@@ -25,3 +25,18 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   display: flex;
   flex: 1 1 auto;
 }
+
+
+.component-container {
+  margin: 100px auto !important;
+  width: 80%;
+  margin: auto;
+}
+
+.full-table {
+  width: 100%;
+}
+
+.w-100 {
+  max-width: 100px;
+}
