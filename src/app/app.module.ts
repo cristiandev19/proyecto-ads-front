@@ -15,6 +15,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatRadioModule} from '@angular/material/radio';
 // My components
 import { LoginComponent } from './components/login/login.component';
 import { RestartPasswordComponent } from './components/restart-password/restart-password.component';
@@ -22,6 +24,10 @@ import { EmitirNotaComponent } from './components/emitir-nota/emitir-nota.compon
 import { EmitirBoletaComponent } from './components/emitir-boleta/emitir-boleta.component';
 import { DetalleProductoModalComponent } from './components/detalle-producto-modal/detalle-producto-modal.component';
 import { InformeBalanceComponent } from './components/informe-balance/informe-balance.component';
+import { RegistrarReclamoComponent } from './components/registrar-reclamo/registrar-reclamo.component';
+import { SharedModule } from './shared/shared.module';
+import { MotivoReclamoModalComponent } from './components/motivo-reclamo-modal/motivo-reclamo-modal.component';
+import { CambiarBoletaComponent } from './components/cambiar-boleta/cambiar-boleta.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +37,10 @@ import { InformeBalanceComponent } from './components/informe-balance/informe-ba
     EmitirNotaComponent,
     EmitirBoletaComponent,
     DetalleProductoModalComponent,
-    InformeBalanceComponent
+    InformeBalanceComponent,
+    RegistrarReclamoComponent,
+    MotivoReclamoModalComponent,
+    CambiarBoletaComponent
   ],
   imports: [
     BrowserModule,
@@ -45,13 +54,17 @@ import { InformeBalanceComponent } from './components/informe-balance/informe-ba
     MatTableModule,
     MatIconModule,
     MatListModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSidenavModule,
+    SharedModule,
+    MatRadioModule
   ],
   exports: [
     AppRoutingModule
   ],
   entryComponents: [
-    DetalleProductoModalComponent
+    DetalleProductoModalComponent,
+    MotivoReclamoModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
