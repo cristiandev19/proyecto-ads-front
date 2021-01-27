@@ -9,17 +9,32 @@ import { RegistrarReclamoComponent } from './components/registrar-reclamo/regist
 import { CambiarBoletaComponent } from './components/cambiar-boleta/cambiar-boleta.component';
 import { GestionarUsuarioComponent } from './components/gestionar-usuario/gestionar-usuario.component';
 import { ReporteInventarioComponent } from './components/reporte-inventario/reporte-inventario.component';
+import { AuthComponent } from './components/auth/auth.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'restart-password', component: RestartPasswordComponent },
-  { path: 'emitir-nota', component: EmitirNotaComponent },
-  { path: 'emitir-boleta', component: EmitirBoletaComponent },
-  { path: 'informe-balance', component: InformeBalanceComponent },
-  { path: 'registrar-reclamo', component: RegistrarReclamoComponent },
-  { path: 'cambiar-boleta', component: CambiarBoletaComponent },
-  { path: 'gestionar-usuario', component: GestionarUsuarioComponent },
-  { path: 'reporte-inventario', component: ReporteInventarioComponent }
+  {
+    path: 'auth',
+    component: AuthComponent,
+    children: [
+      { path: 'login', component: LoginComponent },
+      { path: 'restart-password', component: RestartPasswordComponent }
+    ]
+  },
+  {
+    path: 'admin',
+    component: AdminComponent,
+    children: [
+      { path: 'emitir-nota', component: EmitirNotaComponent },
+      { path: 'emitir-boleta', component: EmitirBoletaComponent },
+      { path: 'informe-balance', component: InformeBalanceComponent },
+      { path: 'registrar-reclamo', component: RegistrarReclamoComponent },
+      { path: 'cambiar-boleta', component: CambiarBoletaComponent },
+      { path: 'gestionar-usuario', component: GestionarUsuarioComponent },
+      { path: 'reporte-inventario', component: ReporteInventarioComponent }
+    ]
+  },
+  { path: '**', component: AuthComponent }
 ];
 
 @NgModule({
