@@ -28,6 +28,8 @@ import { RegistrarReclamoComponent } from './components/registrar-reclamo/regist
 import { SharedModule } from './shared/shared.module';
 import { MotivoReclamoModalComponent } from './components/motivo-reclamo-modal/motivo-reclamo-modal.component';
 import { CambiarBoletaComponent } from './components/cambiar-boleta/cambiar-boleta.component';
+import { AdminComponent } from './components/admin/admin.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { CambiarBoletaComponent } from './components/cambiar-boleta/cambiar-bole
     InformeBalanceComponent,
     RegistrarReclamoComponent,
     MotivoReclamoModalComponent,
-    CambiarBoletaComponent
+    CambiarBoletaComponent,
+    AdminComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
