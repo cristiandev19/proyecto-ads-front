@@ -11,6 +11,7 @@ import { GestionarUsuarioComponent } from './components/gestionar-usuario/gestio
 import { ReporteInventarioComponent } from './components/reporte-inventario/reporte-inventario.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { AdminComponent } from './components/admin/admin.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   {
@@ -25,14 +26,15 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     children: [
-      { path: 'emitir-nota', component: EmitirNotaComponent },
-      { path: 'emitir-boleta', component: EmitirBoletaComponent },
-      { path: 'informe-balance', component: InformeBalanceComponent },
-      { path: 'registrar-reclamo', component: RegistrarReclamoComponent },
-      { path: 'cambiar-boleta', component: CambiarBoletaComponent },
-      { path: 'gestionar-usuario', component: GestionarUsuarioComponent },
-      { path: 'reporte-inventario', component: ReporteInventarioComponent }
-    ]
+      { path: 'emitir-nota', component: EmitirNotaComponent, canActivate: [AuthGuard] },
+      { path: 'emitir-boleta', component: EmitirBoletaComponent, canActivate: [AuthGuard] },
+      { path: 'informe-balance', component: InformeBalanceComponent, canActivate: [AuthGuard] },
+      { path: 'registrar-reclamo', component: RegistrarReclamoComponent, canActivate: [AuthGuard] },
+      { path: 'cambiar-boleta', component: CambiarBoletaComponent, canActivate: [AuthGuard] },
+      { path: 'gestionar-usuario', component: GestionarUsuarioComponent, canActivate: [AuthGuard] },
+      { path: 'reporte-inventario', component: ReporteInventarioComponent, canActivate: [AuthGuard] }
+    ],
+    canActivate: [AuthGuard]
   },
   { path: '**', component: AuthComponent }
 ];
