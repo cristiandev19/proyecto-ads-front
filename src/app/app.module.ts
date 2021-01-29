@@ -17,6 +17,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatGridListModule} from '@angular/material/grid-list';
 // My components
 import { LoginComponent } from './components/login/login.component';
 import { RestartPasswordComponent } from './components/restart-password/restart-password.component';
@@ -30,6 +31,8 @@ import { MotivoReclamoModalComponent } from './components/motivo-reclamo-modal/m
 import { CambiarBoletaComponent } from './components/cambiar-boleta/cambiar-boleta.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AuthComponent } from './components/auth/auth.component';
+import { HomeComponent } from './components/home/home.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,8 @@ import { AuthComponent } from './components/auth/auth.component';
     MotivoReclamoModalComponent,
     CambiarBoletaComponent,
     AdminComponent,
-    AuthComponent
+    AuthComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -60,8 +64,10 @@ import { AuthComponent } from './components/auth/auth.component';
     MatListModule,
     MatDialogModule,
     MatSidenavModule,
+    MatGridListModule,
     SharedModule,
-    MatRadioModule
+    MatRadioModule,
+    HttpClientModule
   ],
   exports: [
     AppRoutingModule
