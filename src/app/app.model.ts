@@ -12,3 +12,19 @@ export interface IProducto {
   precio: string;
   stock: number;
 }
+
+export interface IRol {
+  desc_rol: string;
+  resumen: string;
+}
+
+export interface IAccion {
+  desc_accion: string;
+  ruta_accion: string;
+  resumen: string;
+}
+
+export interface IAsignarAccion {
+  _id_accion: string;
+  _id_rol: string;
+}
