@@ -1,0 +1,32 @@
+
+
+<h1 mat-dialog-title> asignar una accion a un rol</h1>
+<div mat-dialog-content>
+
+  <form [formGroup]="asignarForm">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Accion</mat-label>
+      <mat-select formControlName="accion" name="accion">
+        <mat-option *ngFor="let accion of acciones" [value]="accion.id_accion" >
+          {{accion.desc_accion}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="rol" name="rol">
+        <mat-option *ngFor="let rol of roles" [value]="rol.id_rol">
+          {{rol.desc_rol}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Salir</button>
+  <button mat-button (click)="handleAsignar()">Agregar</button>
+</div>
