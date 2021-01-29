@@ -13,6 +13,7 @@ import { AuthComponent } from './components/auth/auth.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './components/home/home.component';
+import { GestionarPrivilegiosComponent } from './components/gestionar-privilegios/gestionar-privilegios.component';
 
 const routes: Routes = [
   {
@@ -34,7 +35,8 @@ const routes: Routes = [
       { path: 'registrar-reclamo', component: RegistrarReclamoComponent, canActivate: [AuthGuard] },
       { path: 'cambiar-boleta', component: CambiarBoletaComponent, canActivate: [AuthGuard] },
       { path: 'gestionar-usuario', component: GestionarUsuarioComponent, canActivate: [AuthGuard] },
-      { path: 'reporte-inventario', component: ReporteInventarioComponent, canActivate: [AuthGuard] }
+      { path: 'reporte-inventario', component: ReporteInventarioComponent, canActivate: [AuthGuard] },
+      { path: 'gestionar-privilegios', component: GestionarPrivilegiosComponent, canActivate: [AuthGuard] }
     ],
     canActivate: [AuthGuard]
   },
