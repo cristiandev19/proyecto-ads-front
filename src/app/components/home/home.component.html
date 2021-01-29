@@ -1,8 +1,16 @@
 
 
-<mat-grid-list cols="3" rowHeight="1:1">
+<mat-grid-list cols="3" rowHeight="1:1.5">
   <mat-grid-tile>
-    <h2>Bienvenido a Dulcekat</h2>
+    <div>
+      <h2>Bienvenido a Dulcekat</h2>
+    </div>
+    <mat-nav-list>
+      <a mat-list-item (click)="handleLogout()">Logout</a>
+    </mat-nav-list>
+
+
+
   </mat-grid-tile>
   <mat-grid-tile>
     <h1>Que operacion vamos a realizar?</h1>
@@ -17,6 +25,7 @@
       <a mat-list-item routerLink="/admin/registrar-reclamo" routerLinkActive="active">Registrar reclamo</a>
       <a mat-list-item routerLink="/admin/reporte-inventario" routerLinkActive="active">Reporte inventario</a>
       <a mat-list-item routerLink="/admin/cambiar-boleta" routerLinkActive="active">Cambiar boleta</a>
+      <a mat-list-item routerLink="/admin/gestionar-privilegios" routerLinkActive="active">Gestionar privilegios</a>
     </mat-nav-list>
 
   </mat-grid-tile>
