@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 const DATA = [
   {
@@ -35,9 +36,15 @@ const DATA = [
 export class InformeBalanceComponent implements OnInit {
   displayedColumns: string[] = ['fecha', 'hora', 'nro_boleta', 'cliente', 'total_venta', 'mes'];
   dataSource = DATA;
-  
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void { }
+
+
+  handleGoHome() {
+    this.router.navigate(['/admin/home'])
+  }
 }
