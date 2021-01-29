@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AppService } from 'src/app/app.service';
 
 @Component({
   selector: 'cs-login',
@@ -12,7 +13,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private appSrv: AppService
   ) {
     this.loginForm = this.createForm();
   }
@@ -29,12 +31,18 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin() {
-    const form = this.loginForm.value;
-    const usuario = {
-      ...form,
-      isLoged: true
-    }
-    localStorage.setItem('user', JSON.stringify(usuario));
-    this.router.navigate(['/admin/emitir-nota'])
+    const { email, password } = this.loginForm.value;
+    this.appSrv.login(email, password).subscribe(res => {
+      // console.log('res', res)
+      const usuario = {
+        ...res.user,
+        isLoged: true
+      }
+      localStorage.setItem('user', JSON.stringify(usuario));
+      this.router.navigate(['/admin/home'])
+    }, err => {
+      console.log('err', err)
+    });
+
   }
 }
