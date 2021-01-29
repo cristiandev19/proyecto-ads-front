@@ -1,0 +1,18 @@
+<h1 mat-dialog-title> Crear una accion</h1>
+<div mat-dialog-content>
+  
+  <form [formGroup]="accionForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Accion</mat-label>
+      <input matInput type="text" formControlName="desc_accion">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Descripcion</mat-label>
+      <input matInput type="text" formControlName="resumen">
+    </mat-form-field>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>Salir</button>
+  <button mat-button (click)="handleCreateAccion()">Agregar</button>
+</div>
