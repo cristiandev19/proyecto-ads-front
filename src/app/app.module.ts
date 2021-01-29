@@ -18,6 +18,8 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatSelectModule} from '@angular/material/select';
+import {MatSnackBarModule} from '@angular/material/snack-bar'; 
 // My components
 import { LoginComponent } from './components/login/login.component';
 import { RestartPasswordComponent } from './components/restart-password/restart-password.component';
@@ -33,6 +35,12 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AuthComponent } from './components/auth/auth.component';
 import { HomeComponent } from './components/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ReporteInventarioComponent } from './components/reporte-inventario/reporte-inventario.component';
+import { CreateRolModalComponent } from './components/create-rol-modal/create-rol-modal.component';
+import { GestionarPrivilegiosComponent } from './components/gestionar-privilegios/gestionar-privilegios.component';
+import { HandleAccionesModalComponent } from './components/handle-acciones-modal/handle-acciones-modal.component';
+import { CrearAccionModalComponent } from './components/crear-accion-modal/crear-accion-modal.component';
+import { AsignarAccionModalComponent } from './components/asignar-accion-modal/asignar-accion-modal.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +56,14 @@ import { HttpClientModule } from '@angular/common/http';
     CambiarBoletaComponent,
     AdminComponent,
     AuthComponent,
-    HomeComponent
+    HomeComponent,
+    ReporteInventarioComponent,
+    CreateRolModalComponent,
+    GestionarPrivilegiosComponent,
+    CreateRolModalComponent,
+    HandleAccionesModalComponent,
+    CrearAccionModalComponent,
+    AsignarAccionModalComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +80,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     MatSidenavModule,
     MatGridListModule,
+    MatSelectModule,
+    MatSnackBarModule,
     SharedModule,
     MatRadioModule,
     HttpClientModule
@@ -74,7 +91,11 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   entryComponents: [
     DetalleProductoModalComponent,
-    MotivoReclamoModalComponent
+    MotivoReclamoModalComponent,
+    CreateRolModalComponent,
+    HandleAccionesModalComponent,
+    CrearAccionModalComponent,
+    AsignarAccionModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
