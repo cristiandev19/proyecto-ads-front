@@ -1,20 +1,36 @@
 <h1 mat-dialog-title> Mi modal</h1>
 <div mat-dialog-content>
   <mat-list role="list">
-    <mat-list-item role="listitem" *ngFor="let detalle of detalles">
+    <mat-list-item role="listitem">
       <span>
-        {{ detalle.label }}
+        Descripcion producto
       </span>
       <span class="spacer"></span>
       <span>
-        {{ detalle.value }}
+        {{ producto.desc_producto }}
       </span>
-      <!-- <button mat-raised-button (click)="handleOpenDetailModal(producto)">Ir</button> -->
+    </mat-list-item>
+
+    <mat-list-item role="listitem">
+      <span>
+        Precio producto
+      </span>
+      <span class="spacer"></span>
+      <span>
+        {{ producto.precio }}
+      </span>
+    </mat-list-item>
+
+    <mat-list-item role="listitem">
+      <span>
+        Stock producto
+      </span>
+      <span class="spacer"></span>
+      <span>
+        {{ producto.stock }}
+      </span>
     </mat-list-item>
   </mat-list>
-  <!-- <p>
-    This dialog showcases the title, close, content and actions elements.
-  </p> -->
 </div>
 <div mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>

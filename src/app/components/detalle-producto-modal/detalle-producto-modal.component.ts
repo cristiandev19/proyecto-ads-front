@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { IProducto } from 'src/app/app.model';
 
 const DETALLES = [
   {
@@ -31,11 +32,15 @@ const DETALLES = [
   styleUrls: ['./detalle-producto-modal.component.scss']
 })
 export class DetalleProductoModalComponent implements OnInit {
-  detalles: any = DETALLES;
+  producto: IProducto;
+  detalles: any = [];
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     console.log('data', data)
+    this.producto = data.producto;
+    
   }
 
 
