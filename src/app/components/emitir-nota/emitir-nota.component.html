@@ -19,7 +19,7 @@
       <mat-list role="list">
         <mat-list-item role="listitem" *ngFor="let producto of productos_vista">
           <span>
-            {{ producto.name }}
+            {{ producto.desc_producto }}
           </span>
           <span class="spacer"></span>
           <button mat-raised-button (click)="handleOpenDetailModal(producto)">Ir</button>

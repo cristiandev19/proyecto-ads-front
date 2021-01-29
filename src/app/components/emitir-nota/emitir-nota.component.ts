@@ -1,19 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { IProducto } from 'src/app/app.model';
+import { AppService } from 'src/app/app.service';
 import { DetalleProductoModalComponent } from '../detalle-producto-modal/detalle-producto-modal.component';
 
 
-const PRODUCTOS = [
-  {
-    name: 'Producto 1',
-    id: 1
-  },
-  {
-    name: 'Producto 2',
-    id: 2
-  }
-]
 
 @Component({
   selector: 'cs-emitir-nota',
@@ -22,12 +14,13 @@ const PRODUCTOS = [
 })
 export class EmitirNotaComponent implements OnInit {
   searchForm: FormGroup;
-  productos = PRODUCTOS;
-  productos_vista = PRODUCTOS;
+  productos : IProducto[] = [];
+  productos_vista : IProducto[] = [];
 
   constructor(
     private fb: FormBuilder,
-    private dialog: MatDialog 
+    private dialog: MatDialog,
+    private appSrv: AppService
   ) {
     this.searchForm = this.fb.group({
       search: ['']
@@ -46,13 +39,21 @@ export class EmitirNotaComponent implements OnInit {
     })
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.appSrv.getProductos().subscribe(res => {
+      console.log('res', res)
+      this.productos = res.productos;
+      this.productos_vista = res.productos;
+    }, err => {
+      console.log('err', err)
+    })
+  }
 
   handleSearch() {
     const { search : value } = this.searchForm.value;
     if(value) {
       this.productos_vista = this.productos.filter(item => {
-        return (item.name.toLowerCase()).includes(value.toLowerCase())
+        return (item.desc_producto.toLowerCase()).includes(value.toLowerCase())
       });
     } else {
       this.productos_vista = this.productos; 
@@ -64,7 +65,7 @@ export class EmitirNotaComponent implements OnInit {
     this.dialog.open(DetalleProductoModalComponent, {
       width: '500px',
       data: {
-        hola: '1111111111'
+        producto: data
       }
     })
   }
