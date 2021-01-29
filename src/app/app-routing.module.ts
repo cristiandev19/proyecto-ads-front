@@ -12,6 +12,7 @@ import { ReporteInventarioComponent } from './components/reporte-inventario/repo
 import { AuthComponent } from './components/auth/auth.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { AuthGuard } from './guards/auth.guard';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,7 @@ const routes: Routes = [
     path: 'admin',
     component: AdminComponent,
     children: [
+      { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
       { path: 'emitir-nota', component: EmitirNotaComponent, canActivate: [AuthGuard] },
       { path: 'emitir-boleta', component: EmitirBoletaComponent, canActivate: [AuthGuard] },
       { path: 'informe-balance', component: InformeBalanceComponent, canActivate: [AuthGuard] },
