@@ -39,3 +39,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .w-100 {
   max-width: 100px;
 }
+
+
+.w-80 {
+  max-width: 80px;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
