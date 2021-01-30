@@ -35,3 +35,8 @@ export interface IProducto {
   stock         : number;
   precio        : string;
 }
+
+export const CONFIRM_ACTIONS = {
+  YES: 1,
+  NO: 0
+}
