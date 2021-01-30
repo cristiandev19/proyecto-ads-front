@@ -1,22 +1,19 @@
 
 
-<mat-grid-list cols="3" rowHeight="1:1.5">
-  <mat-grid-tile>
+<!-- <mat-grid-list cols="2" rowHeight="1:1"> -->
+<div class="home-container">
+  <div>
     <div>
       <h2>Bienvenido a Dulcekat</h2>
     </div>
     <mat-nav-list>
       <a mat-list-item (click)="handleLogout()">Logout</a>
     </mat-nav-list>
-
-
-
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <h1>Que operacion vamos a realizar?</h1>
-  </mat-grid-tile>
-  <mat-grid-tile>
-
+  </div>
+  <div>
+    <div>
+      <h1>Que operacion vamos a realizar?</h1>
+    </div>
     <mat-nav-list>
       <a mat-list-item routerLink="/admin/home" routerLinkActive="active">Home</a>
       <a mat-list-item routerLink="/admin/emitir-nota" routerLinkActive="active">Emitir nota</a>
@@ -27,7 +24,7 @@
       <a mat-list-item routerLink="/admin/cambiar-boleta" routerLinkActive="active">Cambiar boleta</a>
       <a mat-list-item routerLink="/admin/gestionar-privilegios" routerLinkActive="active">Gestionar privilegios</a>
       <a mat-list-item routerLink="/admin/agregar-producto" routerLinkActive="active">Agregar producto</a>
+      <a mat-list-item routerLink="/admin/gestionar-usuario" routerLinkActive="active">Gestionar usuarios</a>
     </mat-nav-list>
-
-  </mat-grid-tile>
-</mat-grid-list>
+  </div>
+</div>

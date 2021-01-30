@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IProducto } from 'src/app/app.model';
@@ -10,6 +10,7 @@ import { AppService } from 'src/app/app.service';
   styleUrls: ['./producto-edicion-modal.component.scss']
 })
 export class ProductoEdicionModalComponent implements OnInit {
+  @Output() eventEmit = new EventEmitter()
   productoForm : FormGroup;
 
   constructor(
@@ -32,7 +33,32 @@ export class ProductoEdicionModalComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  handleCreate() {}
+  handleCreate() {
+    const { desc_producto, stock, precio } = this.productoForm.value;
+    const obj = {
+      desc_producto, stock, precio
+    }
+    this.appSrv.insertProducto(obj).subscribe(res => {
+      console.log('res', res)
+      this.eventEmit.emit(res);
+    }, err => {
+      console.log('err', err)
+    });
+    // insertProducto
+  }
 
-  handleEdit() {}
+  handleEdit() {
+    const { desc_producto, stock, precio } = this.productoForm.value;
+    const obj = {
+      id_producto: this.data.producto.id_producto,
+      desc_producto, stock, precio
+    }
+    this.appSrv.updateProducto(obj).subscribe(res => {
+      console.log('res', res);
+      this.eventEmit.emit(res);
+    }, err => {
+      console.log('err', err);
+    })
+    // updateProducto
+  }
 }

@@ -1,1 +1,62 @@
-<h1>Gestionar usuario</h1>
+
+
+<div class="component-container">
+  <mat-nav-list>
+    <a mat-list-item routerLink="/admin/home" routerLinkActive="active">Home</a>
+  </mat-nav-list>
+
+  <h1>Gestionar usuario</h1>
+
+
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-table">
+
+    <ng-container matColumnDef="nombres">
+      <mat-header-cell *matHeaderCellDef> Nombres </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.nombres}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="usurio">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="password">
+      <mat-header-cell *matHeaderCellDef class="w-100"> Clave </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="w-100"> {{ element.password }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="rol">
+      <mat-header-cell *matHeaderCellDef class="w-80"> Rol </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="w-80"> {{ element.desc_rol }} </mat-cell>
+    </ng-container>
+
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef class="w-80"> Id </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="w-80"> {{element.id_usuario }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef class="w-80"> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let element" class="w-80">
+        <button mat-icon-button color="primary" (click)="handleActualizarUsuario(element)">
+          <span class="material-icons">
+            mode
+          </span>
+        </button>
+        <button mat-icon-button color="primary">
+          <span class="material-icons">
+            delete
+          </span>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <button mat-raised-button color="primary" (click)="handleCrearUsuario()">Agregar usuario</button>
+
+</div>
