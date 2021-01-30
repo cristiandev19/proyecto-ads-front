@@ -53,6 +53,11 @@ export class AppService {
     return this._http.get(`${this.URL_BACK}/get-usuario`, { params });
   }
 
+  getUsuarios() {
+    return this._http.get(`${this.URL_BACK}/usuarios`);
+  }
+
+
   getRoles() {
     return this._http.get(`${this.URL_BACK}/roles`);
   }
@@ -60,5 +65,26 @@ export class AppService {
   getAcciones() {
     console.log(`${this.URL_BACK}/acciones`);
     return this._http.get(`${this.URL_BACK}/acciones`);
+  }
+
+
+  createUsuario(obj: any) {
+    return this._http.post(`${this.URL_BACK}/create-usuario`, obj ,this.httpOptions);
+  }
+
+  updateUsuario(obj: any) {
+    return this._http.post(`${this.URL_BACK}/update-usuario`, obj ,this.httpOptions);
+  }
+
+  insertProducto(obj: any) {
+    return this._http.post(`${this.URL_BACK}/insert-product`, obj ,this.httpOptions);
+  }
+
+  updateProducto(obj: any) {
+    return this._http.post(`${this.URL_BACK}/update-product`, obj ,this.httpOptions);
+  }
+
+  deleteProducto(obj: any) {
+    return this._http.post(`${this.URL_BACK}/delete-product`, obj, this.httpOptions);
   }
 }
