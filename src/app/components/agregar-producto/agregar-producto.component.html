@@ -1,0 +1,33 @@
+<div class="component-container">
+  <mat-nav-list>
+    <a mat-list-item routerLink="/admin/home" routerLinkActive="active">Home</a>
+  </mat-nav-list>
+
+  <button mat-raised-button color="primary" (click)="handleAgregarProducto()">Agregar producto</button>
+
+  <mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-table">
+
+    <ng-container matColumnDef="descripcion">
+      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.desc_producto}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="stock">
+      <mat-header-cell *matHeaderCellDef> Stock </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.stock}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-button color="primary" (click)="handleActualizarProducto(element)">Editar</button>
+        <button mat-button color="primary">Eliminar</button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+
+</div>
