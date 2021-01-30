@@ -28,3 +28,10 @@ export interface IAsignarAccion {
   _id_accion: string;
   _id_rol: string;
 }
+
+export interface IProducto {
+  id_producto   : number;
+  desc_producto : string;
+  stock         : number;
+  precio        : string;
+}
