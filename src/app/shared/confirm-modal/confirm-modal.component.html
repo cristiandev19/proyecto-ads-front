@@ -5,6 +5,6 @@
   </p>
 </div>
 <div mat-dialog-actions>
-  <button mat-button color="secondary">No</button>
-  <button mat-stroked-button color="primary">Si</button>
+  <button mat-button color="secondary" (click)="handleEmit(CONFIRM_ACTIONS.NO)">No</button>
+  <button mat-stroked-button color="primary" (click)="handleEmit(CONFIRM_ACTIONS.YES)">Si</button>
 </div>
