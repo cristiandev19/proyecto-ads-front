@@ -14,6 +14,7 @@ import { AdminComponent } from './components/admin/admin.component';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { GestionarPrivilegiosComponent } from './components/gestionar-privilegios/gestionar-privilegios.component';
+import { AgregarProductoComponent } from './components/agregar-producto/agregar-producto.component';
 
 const routes: Routes = [
   {
@@ -36,7 +37,8 @@ const routes: Routes = [
       { path: 'cambiar-boleta', component: CambiarBoletaComponent, canActivate: [AuthGuard] },
       { path: 'gestionar-usuario', component: GestionarUsuarioComponent, canActivate: [AuthGuard] },
       { path: 'reporte-inventario', component: ReporteInventarioComponent, canActivate: [AuthGuard] },
-      { path: 'gestionar-privilegios', component: GestionarPrivilegiosComponent, canActivate: [AuthGuard] }
+      { path: 'gestionar-privilegios', component: GestionarPrivilegiosComponent, canActivate: [AuthGuard] },
+      { path: 'agregar-producto', component: AgregarProductoComponent, canActivate: [AuthGuard] }
     ],
     canActivate: [AuthGuard]
   },
