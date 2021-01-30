@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { IProducto } from 'src/app/app.model';
+import { CONFIRM_ACTIONS, IProducto } from 'src/app/app.model';
 import { AppService } from 'src/app/app.service';
+import { ConfirmModalComponent } from 'src/app/shared/confirm-modal/confirm-modal.component';
 import { ProductoEdicionModalComponent } from '../producto-edicion-modal/producto-edicion-modal.component';
 
 @Component({
@@ -20,6 +21,10 @@ export class AgregarProductoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.refreshTable();
+  }
+
+  refreshTable() {
     this.appSrv.getProductos().subscribe(res => {
       console.log('res', res);
       this.dataSource.data = res.productos;
@@ -42,7 +47,9 @@ export class AgregarProductoComponent implements OnInit {
         type: 'crear'
       }
     })
-
+    dialogRef.componentInstance.eventEmit.subscribe((emit: any) => {
+      this.refreshTable();
+    })
 
   }
 
@@ -54,9 +61,35 @@ export class AgregarProductoComponent implements OnInit {
       }
     })
 
+    dialogRef.componentInstance.eventEmit.subscribe((emit: any) => {
+      this.refreshTable();
+    })
   }
 
   handleEliminarProducto(producto: IProducto) {
+    const dialogRef = this.dialog.open(ConfirmModalComponent, {
+      data: {
+        title: 'Eliminar producto',
+        msj: 'Estas segudo de eliminar este producto? '
+      }
+    })
+    dialogRef.componentInstance.eventEmit.subscribe((emit: any)=> {
+      if (emit.action == CONFIRM_ACTIONS.YES) {
+        const obj = {
+          id_producto: producto.id_producto
+        }
+        this.appSrv.deleteProducto(obj).subscribe(res => {
+          console.log('res', res);
+          dialogRef.close();
+          this.refreshTable();
+        }, err => {
+          dialogRef.close();
+          console.log('err', err);
+        })
+      } else {
+        dialogRef.close();
+      }
+    })
 
   }
 
