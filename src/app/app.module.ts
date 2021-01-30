@@ -43,6 +43,8 @@ import { CrearAccionModalComponent } from './components/crear-accion-modal/crear
 import { AsignarAccionModalComponent } from './components/asignar-accion-modal/asignar-accion-modal.component';
 import { AgregarProductoComponent } from './components/agregar-producto/agregar-producto.component';
 import { ProductoEdicionModalComponent } from './components/producto-edicion-modal/producto-edicion-modal.component';
+import { GestionarUsuarioComponent } from './components/gestionar-usuario/gestionar-usuario.component';
+import { UsuarioEdicionModalComponent } from './components/usuario-edicion-modal/usuario-edicion-modal.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +69,9 @@ import { ProductoEdicionModalComponent } from './components/producto-edicion-mod
     CrearAccionModalComponent,
     AsignarAccionModalComponent,
     AgregarProductoComponent,
-    ProductoEdicionModalComponent
+    ProductoEdicionModalComponent,
+    GestionarUsuarioComponent,
+    UsuarioEdicionModalComponent
   ],
   imports: [
     BrowserModule,
@@ -100,7 +104,8 @@ import { ProductoEdicionModalComponent } from './components/producto-edicion-mod
     HandleAccionesModalComponent,
     CrearAccionModalComponent,
     AsignarAccionModalComponent,
-    ProductoEdicionModalComponent
+    ProductoEdicionModalComponent,
+    UsuarioEdicionModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
