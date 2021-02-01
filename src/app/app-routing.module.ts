@@ -15,14 +15,21 @@ import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { GestionarPrivilegiosComponent } from './components/gestionar-privilegios/gestionar-privilegios.component';
 import { AgregarProductoComponent } from './components/agregar-producto/agregar-producto.component';
+import { RestartPasswordEmailComponent } from './components/restart-password-email/restart-password-email.component';
+import { AuthGuard2 } from './guards/auth2.guard';
 
 const routes: Routes = [
   {
     path: 'auth',
     component: AuthComponent,
     children: [
-      { path: 'login', component: LoginComponent },
-      { path: 'restart-password', component: RestartPasswordComponent }
+      { path: 'restart-password/:id', component: RestartPasswordComponent, canActivate: [AuthGuard2] },
+      { path: 'login', component: LoginComponent, canActivate: [AuthGuard2] },
+      { path: 'restart-password', component: RestartPasswordEmailComponent, canActivate: [AuthGuard2] },
+      // { path: 'restart-password/:id', component: RestartPasswordComponent },
+      // { path: 'login', component: LoginComponent },
+      // { path: 'restart-password', component: RestartPasswordEmailComponent },
+
     ]
   },
   {
@@ -42,7 +49,7 @@ const routes: Routes = [
     ],
     canActivate: [AuthGuard]
   },
-  { path: '**', component: AuthComponent }
+  { path: '**', component: LoginComponent, canActivate: [AuthGuard2] }
 ];
 
 @NgModule({
