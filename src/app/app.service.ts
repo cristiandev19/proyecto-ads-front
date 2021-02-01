@@ -63,7 +63,6 @@ export class AppService {
   }
 
   getAcciones() {
-    console.log(`${this.URL_BACK}/acciones`);
     return this._http.get(`${this.URL_BACK}/acciones`);
   }
 
@@ -87,4 +86,31 @@ export class AppService {
   deleteProducto(obj: any) {
     return this._http.post(`${this.URL_BACK}/delete-product`, obj, this.httpOptions);
   }
+
+  getAccionesXRol(id_rol: string) {
+    const params = new HttpParams()
+      .append('id_rol', id_rol);
+    return this._http.get(`${this.URL_BACK}/acciones-x-rol`, { params });
+  }
+
+  emitirNotaVenta(obj: any) {
+    return this._http.post(`${this.URL_BACK}/emitir-notaventa`, obj, this.httpOptions);
+  }
+
+  buscarNotaVenta(nota_venta: string) {
+    const params = new HttpParams()
+    .append('nota_venta', nota_venta);
+    return this._http.get(`${this.URL_BACK}/buscar-notaventa`, { params });
+  }
+
+  emitirBoleta(obj: any) {
+    return this._http.post(`${this.URL_BACK}/emitir-boleta`, obj, this.httpOptions);
+  }
+
+  getBoletas() {
+    const params = new HttpParams();
+    return this._http.get(`${this.URL_BACK}/boletas`, { params });
+  }
+
+
 }
