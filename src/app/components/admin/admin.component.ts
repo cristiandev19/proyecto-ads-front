@@ -20,7 +20,6 @@ export class AdminComponent implements OnInit {
   ngOnInit(): void { }
 
   handleLogout() {
-    console.log('entrooo')
     localStorage.removeItem('user');
 
     this.router.navigate(['/auth/login'])
