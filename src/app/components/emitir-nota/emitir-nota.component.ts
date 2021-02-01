@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { IProducto } from 'src/app/app.model';
+import { INotaVenta, IProducto } from 'src/app/app.model';
 import { AppService } from 'src/app/app.service';
 import { DetalleProductoModalComponent } from '../detalle-producto-modal/detalle-producto-modal.component';
+import { NotaVentaModalComponent } from '../nota-venta-modal/nota-venta-modal.component';
 
 
 
@@ -16,6 +17,8 @@ export class EmitirNotaComponent implements OnInit {
   searchForm: FormGroup;
   productos : IProducto[] = [];
   productos_vista : IProducto[] = [];
+
+  lista_producto: INotaVenta[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -62,12 +65,82 @@ export class EmitirNotaComponent implements OnInit {
 
   handleOpenDetailModal(data: any) {
     console.log('data', data)
-    this.dialog.open(DetalleProductoModalComponent, {
+    const dialogRef = this.dialog.open(DetalleProductoModalComponent, {
       width: '500px',
       data: {
         producto: data
       }
     })
+    dialogRef.componentInstance.eventEmit.subscribe((event: INotaVenta) => {
+      console.log('event', event)
+      const [itemListaProducto] : INotaVenta[] = this.lista_producto
+        .filter(lp => lp.id_producto == event.id_producto);
+
+      console.log('itemListaProducto', itemListaProducto)
+      if (itemListaProducto) {
+        this.lista_producto = this.lista_producto.map(lp => {
+          if (lp.id_producto == event.id_producto) {
+            return {
+              ...lp,
+              cantidad: +lp.cantidad + +event.cantidad
+            }
+          } else {
+            return {
+              ...lp
+            }
+          }
+        })
+        // this.lista_producto = [...this.lista_producto, {
+        //   ...itemListaProducto,
+        //   cantidad: itemListaProducto.cantidad + event.cantidad
+        // }];
+      } else {
+        this.lista_producto = [...this.lista_producto, event];
+      }
+
+      dialogRef.close();
+      console.log('this.lista_producto', this.lista_producto);
+
+      this.openNotaVentaModal();
+
+      const newProductos = this.productos.map(p => {
+        if (p.id_producto == event.id_producto) {
+          return {
+            ...p,
+            stock: +p.stock - +event.cantidad
+          }
+        } else {
+          return {
+            ...p
+          }
+        }
+      })
+      this.productos = [...newProductos];
+      this.productos_vista = [...newProductos];
+
+
+    })
   }
 
+  openNotaVentaModal() {
+    // this.moda NotaVentaModalComponent
+    console.log('nota venta modal')
+    const dialogRef = this.dialog.open(NotaVentaModalComponent, {
+      width: '600px',
+      disableClose: false,
+      data: {
+        nota_ventas: this.lista_producto
+      }
+    })
+
+    dialogRef.componentInstance.eventEmit.subscribe((event: any) => {
+      if (event.event == 'delete') {
+        this.lista_producto = event.nota_ventas;
+        dialogRef.close();
+      } else if (event.event == 'agregar') {
+        dialogRef.close();
+
+      }
+    });
+  }
 }
