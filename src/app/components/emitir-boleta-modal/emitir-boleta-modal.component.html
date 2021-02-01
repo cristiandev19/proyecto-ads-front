@@ -1,0 +1,57 @@
+
+<h1 mat-dialog-title> Nueva boleta</h1>
+<div mat-dialog-content>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-table margen-t">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.desc_producto}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="quantity">
+      <mat-header-cell mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let element"> {{element.cantidad}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="price">
+      <mat-header-cell mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let element"> {{element.precio}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </table>
+
+  <div class="flex align-center margen">
+    <span>Medio pago</span>
+    <span class="spacer"></span>
+    <!-- <mat-form-field appearance="fill">
+      <mat-label>Medio pago</mat-label>
+      <input matInput type="text" [formControl]="buscarBoleta">
+    </mat-form-field> -->
+    <mat-form-field appearance="fill">
+      <mat-label>Medio pago</mat-label>
+      <mat-select [formControl]="medioPago">
+        <mat-option value="efectivo">Efectivo</mat-option>
+        <mat-option value="tarjeta">Tarjeta</mat-option>
+        <mat-option value="banco">Banco</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-stroked-button mat-dialog-close>Cancela</button>
+  <button
+    mat-stroked-button
+    color="primary"
+    (click)="handleConfirmar()"
+  >Confirmar</button>
+</div>
