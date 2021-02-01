@@ -2,36 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { AppService } from 'src/app/app.service';
+import { ObservarBoletaModalComponent } from '../observar-boleta-modal/observar-boleta-modal.component';
 
 
-
-const DATA = [
-  {
-    description: '1',
-    date: '1',
-    state: 'Por atender',
-  },
-  {
-    description: '1asdsad',
-    date: '1',
-    state: 'Anulada',
-  },
-  {
-    description: '152',
-    date: '1',
-    state: 'Por atender',
-  },
-  {
-    description: 'y',
-    date: '1',
-    state: 'Atendida',
-  },
-  {
-    description: '2',
-    date: '1',
-    state: 'No reclamada',
-  }
-]
 
 @Component({
   selector: 'cs-cambiar-boleta',
@@ -50,6 +23,10 @@ export class CambiarBoletaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.refreshTable();
+  }
+
+  refreshTable() {
     this.appSrv.getBoletas().subscribe((res: any) => {
       console.log('res', res);
       this.dataSource.data = res.boletas;
@@ -64,6 +41,21 @@ export class CambiarBoletaComponent implements OnInit {
   }
 
   handleModify(data: any) {
-
+    console.log('data', data);
+    if (data.estado == '1') {
+      const dialogRef = this.dialog.open(ObservarBoletaModalComponent, {
+        width: '500px',
+        data: {
+          id_boleta: data.id_boleta,
+          nro_boleta: `${data.nro_serie}-${data.nro_correlativo}`
+        }
+      })
+      dialogRef.componentInstance.eventEmit.subscribe((event: any) => {
+        dialogRef.close();
+        this.refreshTable();
+      })
+    } else if (data.estado == '3') {
+      
+    }
   }
 }
