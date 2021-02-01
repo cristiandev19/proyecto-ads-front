@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { AppService } from 'src/app/app.service';
 import { CreateRolModalComponent } from '../create-rol-modal/create-rol-modal.component';
 import { HandleAccionesModalComponent } from '../handle-acciones-modal/handle-acciones-modal.component';
+import { UsuarioModalComponent } from '../usuario-modal/usuario-modal.component';
 
 @Component({
   selector: 'app-gestionar-privilegios',
@@ -9,9 +12,15 @@ import { HandleAccionesModalComponent } from '../handle-acciones-modal/handle-ac
   styleUrls: ['./gestionar-privilegios.component.scss']
 })
 export class GestionarPrivilegiosComponent implements OnInit {
+
+  codigoUsuario : FormControl;
+
   constructor(
-    private dialog: MatDialog
-  ) { }
+    private dialog: MatDialog,
+    private appSrv: AppService
+  ) {
+    this.codigoUsuario = new FormControl('', Validators.required);
+  }
 
   ngOnInit(): void { }
 
@@ -38,4 +47,23 @@ export class GestionarPrivilegiosComponent implements OnInit {
     })
 
   }
+
+  handleBuscar() {
+    const codigoUsuario = this.codigoUsuario.value;
+
+    this.appSrv.searchUsuario(codigoUsuario).subscribe((res: any) => {
+      console.log('res', res);
+
+      const dialogRef = this.dialog.open(UsuarioModalComponent, {
+        width: '600px',
+        data: {
+          usuario: res.usuario[0]
+        }
+      })
+    }, err => {
+      console.log('err', err);
+    })
+  }
+
+
 }
