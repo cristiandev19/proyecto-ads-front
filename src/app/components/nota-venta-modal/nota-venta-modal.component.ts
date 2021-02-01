@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { INotaVenta } from 'src/app/app.model';
 import { AppService } from 'src/app/app.service';
+import { FormMensajeComponent } from 'src/app/shared/form-mensaje/form-mensaje.component';
 
 @Component({
   selector: 'app-nota-venta-modal',
@@ -19,7 +20,8 @@ export class NotaVentaModalComponent implements OnInit {
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any,
     public dialogRef: MatDialogRef<NotaVentaModalComponent>,
-    private appSrv: AppService
+    private appSrv: AppService,
+    private dialog: MatDialog
   ) {
     this.dataSource.data = this.data.nota_ventas;
   }
@@ -62,6 +64,17 @@ export class NotaVentaModalComponent implements OnInit {
     }
     this.appSrv.emitirNotaVenta(obj).subscribe(res => {
       console.log('res', res)
+
+      const dialogRef = this.dialog.open(FormMensajeComponent, {
+        data: {
+          message: 'Se emitio nota de venta',
+          title: 'Mensaje',
+          closeMessage: 'Volver'
+        }
+      });
+      this.eventEmit.emit({
+        event: 'emitir'
+      });
       this.dialogRef.close();
     }, err => {
       console.log('err', err);
