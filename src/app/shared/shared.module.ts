@@ -15,10 +15,12 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 // My components
 import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
+import { FormMensajeComponent } from './form-mensaje/form-mensaje.component';
 
 @NgModule({
   declarations: [
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    FormMensajeComponent
   ],
   imports: [
     BrowserModule,
@@ -36,10 +38,12 @@ import { ConfirmModalComponent } from './confirm-modal/confirm-modal.component';
     
   ],
   exports: [
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    FormMensajeComponent
   ],
   entryComponents: [
-    ConfirmModalComponent
+    ConfirmModalComponent,
+    FormMensajeComponent
   ],
   providers: [],
   bootstrap: []
