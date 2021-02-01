@@ -43,6 +43,9 @@ export class EmitirNotaComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.refreshTable();
+  }
+  refreshTable() {
     this.appSrv.getProductos().subscribe(res => {
       console.log('res', res)
       this.productos = res.productos;
@@ -51,7 +54,7 @@ export class EmitirNotaComponent implements OnInit {
       console.log('err', err)
     })
   }
-
+  
   handleSearch() {
     const { search : value } = this.searchForm.value;
     if(value) {
@@ -135,11 +138,13 @@ export class EmitirNotaComponent implements OnInit {
 
     dialogRef.componentInstance.eventEmit.subscribe((event: any) => {
       if (event.event == 'delete') {
-        this.lista_producto = event.nota_ventas;
+        this.lista_producto = [...event.nota_ventas];
         dialogRef.close();
       } else if (event.event == 'agregar') {
         dialogRef.close();
-
+      } else if (event.event == 'emitir') {
+        this.lista_producto = [];
+        this.refreshTable()
       }
     });
   }
