@@ -139,7 +139,8 @@ export class EmitirNotaComponent implements OnInit {
     dialogRef.componentInstance.eventEmit.subscribe((event: any) => {
       if (event.event == 'delete') {
         this.lista_producto = [...event.nota_ventas];
-        dialogRef.close();
+        // dialogRef.close();
+        this.refreshTable();
       } else if (event.event == 'agregar') {
         dialogRef.close();
       } else if (event.event == 'emitir') {
