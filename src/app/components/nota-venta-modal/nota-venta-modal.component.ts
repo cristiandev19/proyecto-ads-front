@@ -38,6 +38,8 @@ export class NotaVentaModalComponent implements OnInit {
     const newData = this.data.nota_ventas
       .filter((nv: INotaVenta) => data.id_producto !== nv.id_producto);
 
+      this.dataSource.data = newData;
+      this.data.nota_ventas = newData;
     this.eventEmit.emit({
       nota_ventas: newData,
       event: 'delete'
