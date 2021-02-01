@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AppService } from 'src/app/app.service';
+import { FormMensajeComponent } from 'src/app/shared/form-mensaje/form-mensaje.component';
 
 @Component({
   selector: 'cs-login',
@@ -14,7 +16,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private appSrv: AppService
+    private appSrv: AppService,
+    private dialog: MatDialog
   ) {
     this.loginForm = this.createForm();
   }
@@ -42,6 +45,13 @@ export class LoginComponent implements OnInit {
       this.router.navigate(['/admin/home'])
     }, err => {
       console.log('err', err)
+      const dialogRef2 = this.dialog.open(FormMensajeComponent, {
+        data: {
+          message: err.error.message || 'hubo un problema',
+          title: 'ERROR',
+          closeMessage: 'Volver'
+        }
+      });
     });
 
   }
