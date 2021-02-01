@@ -15,6 +15,13 @@
       <h1>Que operacion vamos a realizar?</h1>
     </div>
     <mat-nav-list>
+      <ng-container *ngFor="let accion of acciones">
+        <a mat-list-item [routerLink]="accion.ruta_accion" routerLinkActive="active">
+          {{ accion.desc_accion }}
+        </a>
+      </ng-container>
+    </mat-nav-list>
+    <!-- <mat-nav-list>
       <a mat-list-item routerLink="/admin/home" routerLinkActive="active">Home</a>
       <a mat-list-item routerLink="/admin/emitir-nota" routerLinkActive="active">Emitir nota</a>
       <a mat-list-item routerLink="/admin/emitir-boleta" routerLinkActive="active">Emitir boleta</a>
@@ -25,6 +32,6 @@
       <a mat-list-item routerLink="/admin/gestionar-privilegios" routerLinkActive="active">Gestionar privilegios</a>
       <a mat-list-item routerLink="/admin/agregar-producto" routerLinkActive="active">Agregar producto</a>
       <a mat-list-item routerLink="/admin/gestionar-usuario" routerLinkActive="active">Gestionar usuarios</a>
-    </mat-nav-list>
+    </mat-nav-list> -->
   </div>
 </div>
