@@ -1,6 +1,6 @@
 <h1 mat-dialog-title> Mi modal</h1>
 <div mat-dialog-content>
-  <mat-list role="list">
+  <mat-list role="list" class="altura">
     <mat-list-item role="listitem">
       <span>
         Descripcion producto
@@ -30,8 +30,35 @@
         {{ producto.stock }}
       </span>
     </mat-list-item>
+
+
+    <mat-list-item role="listitem">
+      <span>
+        Cantidad
+      </span>
+      <span class="spacer"></span>
+      <mat-form-field appearance="fill">
+        <mat-label>Cantidad</mat-label>
+        <input matInput type="text" [formControl]="cantidad">
+        <mat-error *ngIf="cantidad?.errors?.required">
+          Ingrese una cantidad
+        </mat-error>
+        <mat-error *ngIf="cantidad?.errors?.max">
+          Maxima cantidad de stock es {{ producto.stock }}
+        </mat-error>
+        <mat-error *ngIf="cantidad?.errors?.pattern">
+          Solo se permiten numeros
+        </mat-error>
+      </mat-form-field>
+    </mat-list-item>
+
   </mat-list>
 </div>
 <div mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
+  <button
+    mat-button
+    (click)="handleAgregar()"
+    [disabled]="cantidad.pristine || cantidad.invalid"
+  >Agregar</button>
+  <button mat-button mat-dialog-close>Cerrar</button>
 </div>
