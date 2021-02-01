@@ -2,7 +2,7 @@ export interface IUser {
   nombres: string;
   email: string;
   password: string;
-  _id_rol?: string;
+  _id_rol: string;
   isLoged: boolean;
 }
 
@@ -40,3 +40,25 @@ export const CONFIRM_ACTIONS = {
   YES: 1,
   NO: 0
 }
+
+export interface INotaVenta {
+  id_producto: number;
+  desc_producto : string;
+  stock         : number;
+  precio        : string;
+  cantidad: number;
+}
+
+export interface BoletaElement {
+  description: string;
+  quantity: number;
+  price: number;
+}
+
+export interface IFormMensaje {
+  message: string;
+  title: string;
+  closeMessage: string;
+}
+
+
