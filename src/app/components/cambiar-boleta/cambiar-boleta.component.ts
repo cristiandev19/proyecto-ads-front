@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { AppService } from 'src/app/app.service';
 
 
 
@@ -29,7 +31,7 @@ const DATA = [
     date: '1',
     state: 'No reclamada',
   }
-] 
+]
 
 @Component({
   selector: 'cs-cambiar-boleta',
@@ -38,14 +40,23 @@ const DATA = [
 })
 export class CambiarBoletaComponent implements OnInit {
   displayedColumns: string[] = ['description','date','state', 'action'];
-  dataSource = DATA;
-  
+  // dataSource = DATA;
+  dataSource: MatTableDataSource<any> = new MatTableDataSource();
+
   constructor(
-    private dialog: MatDialog 
+    private dialog: MatDialog,
+    private appSrv: AppService
   ) {
   }
-  
-  ngOnInit(): void { }
+
+  ngOnInit(): void {
+    this.appSrv.getBoletas().subscribe((res: any) => {
+      console.log('res', res);
+      this.dataSource.data = res.boletas;
+    }, err => {
+      console.log('err', err);
+    });
+  }
 
   handleSearch() {
     // const { search : filterValue} = this.searchForm.value();
