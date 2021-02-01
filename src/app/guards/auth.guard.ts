@@ -18,11 +18,25 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
     const user: IUser = JSON.parse(localStorage.getItem('user') || 'null')
+    const ruta = route.url[0].path;
+
+    console.log('ruta', ruta)
+    console.log('user', user)
+    // if (ruta == 'auth' && user) {
+    //   this.router.navigateByUrl('/admin/home');
+    //   return false;
+    // }
+    // if (ruta == 'auth' && !user) {
+    //   // this.router.navigateByUrl('/auth/login');
+    //   return true;
+    // }
+    // else {
+    //   return true;
+    // }
     if (!user) {
       this.router.navigateByUrl('/auth/login');
-      return false;
+      // return true;
     }
-    const ruta = route.url[0].path;
     if (ruta == 'admin') {
       return true;
     } else {
