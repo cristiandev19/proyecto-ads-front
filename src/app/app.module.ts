@@ -45,6 +45,8 @@ import { AgregarProductoComponent } from './components/agregar-producto/agregar-
 import { ProductoEdicionModalComponent } from './components/producto-edicion-modal/producto-edicion-modal.component';
 import { GestionarUsuarioComponent } from './components/gestionar-usuario/gestionar-usuario.component';
 import { UsuarioEdicionModalComponent } from './components/usuario-edicion-modal/usuario-edicion-modal.component';
+import { NotaVentaModalComponent } from './components/nota-venta-modal/nota-venta-modal.component';
+import { EmitirBoletaModalComponent } from './components/emitir-boleta-modal/emitir-boleta-modal.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +73,9 @@ import { UsuarioEdicionModalComponent } from './components/usuario-edicion-modal
     AgregarProductoComponent,
     ProductoEdicionModalComponent,
     GestionarUsuarioComponent,
-    UsuarioEdicionModalComponent
+    UsuarioEdicionModalComponent,
+    NotaVentaModalComponent,
+    EmitirBoletaModalComponent
   ],
   imports: [
     BrowserModule,
@@ -105,7 +109,9 @@ import { UsuarioEdicionModalComponent } from './components/usuario-edicion-modal
     CrearAccionModalComponent,
     AsignarAccionModalComponent,
     ProductoEdicionModalComponent,
-    UsuarioEdicionModalComponent
+    UsuarioEdicionModalComponent,
+    NotaVentaModalComponent,
+    EmitirBoletaModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
