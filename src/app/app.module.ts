@@ -47,6 +47,9 @@ import { GestionarUsuarioComponent } from './components/gestionar-usuario/gestio
 import { UsuarioEdicionModalComponent } from './components/usuario-edicion-modal/usuario-edicion-modal.component';
 import { NotaVentaModalComponent } from './components/nota-venta-modal/nota-venta-modal.component';
 import { EmitirBoletaModalComponent } from './components/emitir-boleta-modal/emitir-boleta-modal.component';
+import { ObservarBoletaModalComponent } from './components/observar-boleta-modal/observar-boleta-modal.component';
+import { RestartPasswordEmailComponent } from './components/restart-password-email/restart-password-email.component';
+import { UsuarioModalComponent } from './components/usuario-modal/usuario-modal.component';
 
 @NgModule({
   declarations: [
@@ -75,7 +78,10 @@ import { EmitirBoletaModalComponent } from './components/emitir-boleta-modal/emi
     GestionarUsuarioComponent,
     UsuarioEdicionModalComponent,
     NotaVentaModalComponent,
-    EmitirBoletaModalComponent
+    EmitirBoletaModalComponent,
+    ObservarBoletaModalComponent,
+    RestartPasswordEmailComponent,
+    UsuarioModalComponent
   ],
   imports: [
     BrowserModule,
@@ -111,7 +117,9 @@ import { EmitirBoletaModalComponent } from './components/emitir-boleta-modal/emi
     ProductoEdicionModalComponent,
     UsuarioEdicionModalComponent,
     NotaVentaModalComponent,
-    EmitirBoletaModalComponent
+    EmitirBoletaModalComponent,
+    ObservarBoletaModalComponent,
+    UsuarioModalComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
