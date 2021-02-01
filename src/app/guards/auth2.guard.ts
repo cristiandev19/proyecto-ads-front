@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, TimeoutError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IUser } from '../app.model';
 import { AppService } from '../app.service';
@@ -8,7 +8,7 @@ import { AppService } from '../app.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthGuard implements CanActivate {
+export class AuthGuard2 implements CanActivate {
   constructor(
     private router: Router,
     private appSrv: AppService
@@ -30,31 +30,15 @@ export class AuthGuard implements CanActivate {
     //   // this.router.navigateByUrl('/auth/login');
     //   return true;
     // }
-    // else {
-    //   return true;
-    // }
-    if (!user) {
-      this.router.navigateByUrl('/auth/login');
-      // return true;
-    }
-    if (ruta == 'admin') {
+    if (user) {
+      this.router.navigateByUrl('/admin/home');
       return true;
     } else {
-      return this.appSrv.getAccionesXRol(user._id_rol)
-        .pipe(
-          map((res: any) => {
-            const acciones = res.acciones
-            .map((acc: any) => acc.ruta_accion.split('/')[2]);
-            if (acciones.includes(ruta)) {
-              return true;
-            } else {
-              this.router.navigateByUrl('/admin/home');
-              return false;
-            }
-          }, (err: any) => {
-            return false;
-          })
-        )
+      // this.router.navigateByUrl('/auth/login');
+      return true;
     }
+    // else {
+    return true;
+    // }
   }
 }

@@ -16,7 +16,7 @@
     <!-- Position Column -->
     <ng-container matColumnDef="fecha">
       <th mat-header-cell *matHeaderCellDef> Fecha </th>
-      <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.fecha_f}} </td>
     </ng-container>
 
     <!-- Position Column -->
@@ -28,19 +28,19 @@
     <!-- Position Column -->
     <ng-container matColumnDef="nro_boleta">
       <th mat-header-cell *matHeaderCellDef> Nro. boleta </th>
-      <td mat-cell *matCellDef="let element"> {{element.nro_boleta}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.nro_serie + "-" + element.nro_correlativo}} </td>
     </ng-container>
 
     <!-- Position Column -->
     <ng-container matColumnDef="cliente">
       <th mat-header-cell *matHeaderCellDef> Cliente </th>
-      <td mat-cell *matCellDef="let element"> {{element.cliente}} </td>
+      <td mat-cell *matCellDef="let element"> - </td>
     </ng-container>
 
     <!-- Position Column -->
     <ng-container matColumnDef="total_venta">
       <th mat-header-cell *matHeaderCellDef> Total venta </th>
-      <td mat-cell *matCellDef="let element"> {{element.total_venta}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.total}} </td>
     </ng-container>
 
 

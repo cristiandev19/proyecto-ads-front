@@ -112,5 +112,37 @@ export class AppService {
     return this._http.get(`${this.URL_BACK}/boletas`, { params });
   }
 
+  detalleBoleta(id_boleta: number) {
+    const params = new HttpParams()
+      .append('id_boleta', `${id_boleta}`);
+    return this._http.get(`${this.URL_BACK}/detalle-boleta`, { params });
+  }
+
+  updateBoleta(obj: any) {
+    return this._http.post(`${this.URL_BACK}/update-boleta`, obj, this.httpOptions);
+  }
+
+  validarEmail(email: string) {
+    const params = new HttpParams()
+      .append('email', email);
+    return this._http.get(`${this.URL_BACK}/validar-email`, { params });
+  }
+
+  updatePass(obj: any) {
+    return this._http.post(`${this.URL_BACK}/update-pass`, obj, this.httpOptions);
+  }
+
+  searchUsuario(id_usuario: string) {
+    const params = new HttpParams()
+      .append('id_usuario', id_usuario);
+    return this._http.get(`${this.URL_BACK}/search-usuario`, { params });
+
+  }
+  // getBoletas() {
+  //   return this._http.get(`${this.URL_BACK}/boletas`, obj, this.httpOptions);
+  // }
+  updateRol(obj: any) {
+    return this._http.post(`${this.URL_BACK}/update-rol`, obj, this.httpOptions);
+  }
 
 }

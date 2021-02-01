@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { AppService } from 'src/app/app.service';
 
 const DATA = [
   {
@@ -35,13 +37,21 @@ const DATA = [
 })
 export class InformeBalanceComponent implements OnInit {
   displayedColumns: string[] = ['fecha', 'hora', 'nro_boleta', 'cliente', 'total_venta', 'mes'];
-  dataSource = DATA;
+  dataSource = new MatTableDataSource();
 
   constructor(
-    private router: Router
+    private router: Router,
+    private appSrv: AppService
   ) { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.appSrv.getBoletas().subscribe((res: any) => {
+      console.log('res', res);
+      this.dataSource.data = res.boletas;
+    }, err => {
+      console.log('err', err);
+    });
+  }
 
 
   handleGoHome() {

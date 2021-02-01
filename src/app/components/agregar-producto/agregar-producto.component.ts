@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { CONFIRM_ACTIONS, IProducto } from 'src/app/app.model';
 import { AppService } from 'src/app/app.service';
 import { ConfirmModalComponent } from 'src/app/shared/confirm-modal/confirm-modal.component';
+import { FormMensajeComponent } from 'src/app/shared/form-mensaje/form-mensaje.component';
 import { ProductoEdicionModalComponent } from '../producto-edicion-modal/producto-edicion-modal.component';
 
 @Component({
@@ -48,6 +49,14 @@ export class AgregarProductoComponent implements OnInit {
       }
     })
     dialogRef.componentInstance.eventEmit.subscribe((emit: any) => {
+      const dialogRef2 = this.dialog.open(FormMensajeComponent, {
+        data: {
+          message: 'Nuevo producto agregado con exito',
+          title: 'Mensaje',
+          closeMessage: 'Volver'
+        }
+      });
+      dialogRef.close();
       this.refreshTable();
     })
 
@@ -62,6 +71,14 @@ export class AgregarProductoComponent implements OnInit {
     })
 
     dialogRef.componentInstance.eventEmit.subscribe((emit: any) => {
+      const dialogRef2 = this.dialog.open(FormMensajeComponent, {
+        data: {
+          message: 'Nuevo producto actualizado con exito',
+          title: 'Mensaje',
+          closeMessage: 'Volver'
+        }
+      });
+      dialogRef.close();
       this.refreshTable();
     })
   }

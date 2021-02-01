@@ -8,4 +8,13 @@
   <button mat-raised-button color="primary" (click)="handleNuevoRol()">Nuevo rol</button>
   <button mat-raised-button color="primary" (click)="handleAcciones()">Acciones</button>
 
+
+
+  <br>
+  <mat-form-field appearance="fill">
+    <mat-label>ingresa tu codigo</mat-label>
+    <input matInput type="text" [formControl]="codigoUsuario">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="handleBuscar()">Buscar</button>
+
 </div>
