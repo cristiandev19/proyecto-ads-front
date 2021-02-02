@@ -18,7 +18,16 @@ export class AuthGuard2 implements CanActivate {
     state: RouterStateSnapshot
   ): Observable<boolean> | Promise<boolean> | boolean {
     const user: IUser = JSON.parse(localStorage.getItem('user') || 'null')
-    const ruta = route.url[0].path;
+    
+    console.log('route', route);
+    const url: any[] =route?.url;
+    console.log('url', url);
+
+    if (url.length == 0) {
+      this.router.navigateByUrl('/auth/login');
+      return false;
+    }
+    const ruta = (url as any).path;
 
     console.log('ruta', ruta)
     console.log('user', user)
