@@ -53,13 +53,14 @@ export class GestionarPrivilegiosComponent implements OnInit {
 
     this.appSrv.searchUsuario(codigoUsuario).subscribe((res: any) => {
       console.log('res', res);
-
-      const dialogRef = this.dialog.open(UsuarioModalComponent, {
-        width: '600px',
-        data: {
-          usuario: res.usuario[0]
-        }
-      })
+      if (res.usuario.length > 0) {
+        const dialogRef = this.dialog.open(UsuarioModalComponent, {
+          width: '600px',
+          data: {
+            usuario: res.usuario[0]
+          }
+        })
+      }
     }, err => {
       console.log('err', err);
     })
