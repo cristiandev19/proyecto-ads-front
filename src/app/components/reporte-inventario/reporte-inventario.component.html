@@ -1,7 +1,58 @@
-<div>
 
-  <mat-nav-list>
-    <a mat-list-item routerLink="/admin/home" routerLinkActive="active">Home</a>
-  </mat-nav-list>
+
+<div class="component-container">
+
+  <form [formGroup]="searchForm" class="nota-form">
+    <mat-form-field appesearcharance="fill" class="nota-form__search">
+      <mat-label>Search your product</mat-label>
+      <input matInput type="text" formControlName="search">
+    </mat-form-field>
+    <button mat-icon-button color="primary" (click)="handleSearch()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </form>
+
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-table">
+
+    <!--- Note that these columns can be defined in any order.
+          The actual rendered columns are set as a property on the row definition" -->
+
+        <!-- `${b.id_producto}`, `${b.desc_producto}`, `${b.stock}`, `${b.precio}` -->
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> id </th>
+      <td mat-cell *matCellDef="let element"> {{element.id_producto}} </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="producto">
+      <th mat-header-cell *matHeaderCellDef> desc. producto </th>
+      <td mat-cell *matCellDef="let element"> {{element.desc_producto}} </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="stock">
+      <th mat-header-cell *matHeaderCellDef> stock </th>
+      <td mat-cell *matCellDef="let element"> {{element.stock}} </td>
+    </ng-container>
+
+    <!-- Position Column -->
+    <ng-container matColumnDef="precio">
+      <th mat-header-cell *matHeaderCellDef> Precio </th>
+      <td mat-cell *matCellDef="let element"> {{ element.precio }} </td>
+    </ng-container>
+
+
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <div class="buttons-action">
+    <button mat-raised-button color="primary" (click)="clicked()">Imprimir informe</button>
+    <button mat-button color="secondary" (click)="handleGoHome()">Volver a principal</button>
+  </div>
 
 </div>
