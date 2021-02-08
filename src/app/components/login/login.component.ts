@@ -35,7 +35,20 @@ export class LoginComponent implements OnInit {
 
   handleLogin() {
     const { email, password } = this.loginForm.value;
+
+    if ( !email || !password ) {
+      const dialogRef2 = this.dialog.open(FormMensajeComponent, {
+        data: {
+          message: 'no pueden haber cambios vacios',
+          title: 'error',
+          closeMessage: 'Volver'
+        }
+      });
+      return ;
+    }
+
     this.appSrv.login(email, password).subscribe(res => {
+      console.log('res', res)
       const usuario = {
         ...res.user,
         isLoged: true
@@ -43,6 +56,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('user', JSON.stringify(usuario));
       this.router.navigate(['/admin/home'])
     }, err => {
+      console.log('err', err)
       const dialogRef2 = this.dialog.open(FormMensajeComponent, {
         data: {
           message: err.error.message || 'hubo un problema',

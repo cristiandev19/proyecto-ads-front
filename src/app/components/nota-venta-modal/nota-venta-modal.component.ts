@@ -62,12 +62,12 @@ export class NotaVentaModalComponent implements OnInit {
       nota_ventas,
       total
     }
-    this.appSrv.emitirNotaVenta(obj).subscribe(res => {
+    this.appSrv.emitirNotaVenta(obj).subscribe((res: any) => {
       console.log('res', res)  
 
       const dialogRef = this.dialog.open(FormMensajeComponent, {
         data: {
-          message: 'Se emitio nota de venta',
+          message: `Se emitio nota de venta: ${res.result.nota_venta}`,
           title: 'Mensaje',
           closeMessage: 'Volver'
         }

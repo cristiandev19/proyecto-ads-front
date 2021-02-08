@@ -97,7 +97,7 @@ export class AgregarProductoComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmModalComponent, {
       data: {
         title: 'Eliminar producto',
-        msj: 'Estas segudo de eliminar este producto? '
+        msj: 'Estas seguro de eliminar este producto? '
       }
     })
     dialogRef.componentInstance.eventEmit.subscribe((emit: any)=> {

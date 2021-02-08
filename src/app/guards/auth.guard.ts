@@ -30,8 +30,9 @@ export class AuthGuard implements CanActivate {
       return this.appSrv.getAccionesXRol(user._id_rol)
         .pipe(
           map((res: any) => {
-            const acciones = res.acciones
+            const acciones = [...res.acciones, { ruta_accion: '/admin/home'}]
             .map((acc: any) => acc.ruta_accion.split('/')[2]);
+            console.log('acciones', acciones)
             if (acciones.includes(ruta)) {
               return true;
             } else {

@@ -48,6 +48,19 @@ export class    MotivoReclamoModalComponent implements OnInit {
 
   handleSi() {
     const {option} = this.reclamoForm.value
+
+    if (!option) {
+
+      const dialogRef3 = this.dialog.open(FormMensajeComponent, {
+        data: {
+          message: 'No pueden haber campos vacios',
+          title: 'Mensaje',
+          closeMessage: 'Volver'
+        }
+      });
+      return ;
+    }
+    
     const obj = {
       _id_boleta: this.data.boleta.id_boleta,
       desc_reclamo: option
