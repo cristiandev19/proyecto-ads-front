@@ -38,11 +38,25 @@ export class CrearAccionModalComponent implements OnInit {
 
   handleCreateAccion() {
     const { desc_accion, resumen } = this.accionForm.value;
+    if ( !desc_accion || !resumen ) {
+      const dialogRef2 = this.dialog.open(FormMensajeComponent, {
+        data: {
+          message: 'no pueden haber cambios vacios',
+          title: 'error',
+          closeMessage: 'Volver'
+        }
+      });
+      return ;
+    }
+    
+    
     const obj = {
       resumen,
       desc_accion,
       ruta_accion: desc_accion
     };
+
+    
     this.appSrv.insertAccion(obj).subscribe(res => {
       console.log('res', res)
       const dialogRef2 = this.dialog.open(FormMensajeComponent, {
