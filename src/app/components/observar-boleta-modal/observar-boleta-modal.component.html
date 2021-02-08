@@ -39,6 +39,13 @@
 
 </div>
 <div mat-dialog-actions>
-  <button mat-stroked-button color="primary" (click)="handleAnular()">Anular compra</button>
-  <button mat-stroked-button color="primary" (click)="handleFinalizar()">Finalizar compra</button>
+  <ng-container *ngIf="data.type == 'form-boleta'">
+    <button mat-stroked-button color="primary" (click)="handleAnular()">Anular compra</button>
+    <button mat-stroked-button color="primary" (click)="handleFinalizar()">Finalizar compra</button>
+  </ng-container>
+  
+  <ng-container *ngIf="data.type == 'form-reclamo'">
+    <button mat-stroked-button color="primary" (click)="handleAnularReclamo()">Anular reclamo</button>
+    <button mat-stroked-button color="primary" (click)="handleFinRecllamo()">Finalizar reclamo</button>
+  </ng-container>
 </div>
