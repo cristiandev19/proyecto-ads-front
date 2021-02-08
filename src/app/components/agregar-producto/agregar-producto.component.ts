@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { CONFIRM_ACTIONS, IProducto } from 'src/app/app.model';
@@ -15,23 +16,35 @@ import { ProductoEdicionModalComponent } from '../producto-edicion-modal/product
 export class AgregarProductoComponent implements OnInit {
   displayedColumns: string[] = ['descripcion', 'stock', 'acciones'];
   dataSource: MatTableDataSource<IProducto> = new MatTableDataSource();
+  productos: any[] = [];
+  searchForm: FormGroup;
 
   constructor(
+    private fb: FormBuilder,
     private appSrv: AppService,
     private dialog: MatDialog
-  ) { }
+  ) {
+    this.searchForm = this.fb.group({
+      search: ['']
+    });
+  }
 
   ngOnInit(): void {
-    this.refreshTable();
+    // this.refreshTable();
   }
 
   refreshTable() {
-    this.appSrv.getProductos().subscribe(res => {
-      console.log('res', res);
-      this.dataSource.data = res.productos;
-    }, err => {
-      console.log('err', err);
-    });
+      this.dataSource.data = [];
+      this.productos = [];
+
+    // this.appSrv.getProductos().subscribe(res => {
+    //   console.log('res', res);
+    //   this.dataSource.data = res.productos;
+    //   // dataSource
+    //   // productos
+    // }, err => {
+    //   console.log('err', err);
+    // });
   }
 
   handleAgregarProducto() {
@@ -108,6 +121,35 @@ export class AgregarProductoComponent implements OnInit {
       }
     })
 
+  }
+
+  handleSearch() {
+    const { search : value } = this.searchForm.value;
+    if(value) {
+      // this.productos_vista = this.productos.filter(item => {
+      //   return (item.desc_producto.toLowerCase()).includes(value.toLowerCase())
+      // });
+      this.appSrv.searchProduct(value).subscribe((res: any) => {
+        console.log('res', res);
+        // this.productos = res.productos;
+        this.dataSource.data = res.productos;
+        this.productos = res.productos;
+      }, err => {
+        console.log('hola');
+      })
+    } else {
+      this.dataSource.data = [];
+      // this.productos_vista = this.productos; 
+      this.productos = [];
+
+      const dialogRef = this.dialog.open(FormMensajeComponent, {
+        data: {
+          message: 'Campo vacio',
+          title: 'error',
+          closeMessage: 'ok'
+        }
+      });
+    }
   }
 
 }
