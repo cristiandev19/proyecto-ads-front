@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AppService } from 'src/app/app.service';
+import { FormMensajeComponent } from 'src/app/shared/form-mensaje/form-mensaje.component';
 
 @Component({
   selector: 'app-create-rol-modal',
@@ -17,6 +18,7 @@ export class CreateRolModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private appSrv: AppService,
     public dialogRef: MatDialogRef<CreateRolModalComponent>,
+    public dialog: MatDialog
   ) {
     this.rolForm = this.createForm();
   }
@@ -35,6 +37,18 @@ export class CreateRolModalComponent implements OnInit {
   handleCreateRol() {
     const { desc_rol, resumen } = this.rolForm.value;
     console.log({desc_rol, resumen})
+    if ( !desc_rol || !resumen ) {
+      const dialogRef2 = this.dialog.open(FormMensajeComponent, {
+        data: {
+          message: 'no pueden haber cambios vacios',
+          title: 'error',
+          closeMessage: 'Volver'
+        }
+      });
+      return ;
+    }
+    
+    
     const obj = {
       desc_rol, resumen
     }

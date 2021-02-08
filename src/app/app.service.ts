@@ -174,5 +174,9 @@ export class AppService {
       .append('boleta', boleta);
     return this._http.get(`${this.URL_BACK}/buscar-boleta`, { params });
   }
-  
+
+  deleteUsuario(obj: any) {
+    return this._http.post(`${this.URL_BACK}/delete-usuario`, obj, this.httpOptions);
+  }
+
 }

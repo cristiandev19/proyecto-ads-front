@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { Form, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IUser } from 'src/app/app.model';
 import { AppService } from 'src/app/app.service';
+import { FormMensajeComponent } from 'src/app/shared/form-mensaje/form-mensaje.component';
 
 @Component({
   selector: 'app-usuario-edicion-modal',
@@ -18,6 +19,7 @@ export class UsuarioEdicionModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private appSrv: AppService,
     public dialogRef: MatDialogRef<UsuarioEdicionModalComponent>,
+    private dialog: MatDialog
   ) {
     this.usuarioForm = this.createForm(this.data.usuario);
   }
@@ -36,6 +38,18 @@ export class UsuarioEdicionModalComponent implements OnInit {
 
   handleCreate() {
     const { nombres, email, password } = this.usuarioForm.value;
+    
+    if ( !nombres || !email || !password ) {
+      const dialogRef2 = this.dialog.open(FormMensajeComponent, {
+        data: {
+          message: 'no pueden haber cambios vacios',
+          title: 'error',
+          closeMessage: 'Volver'
+        }
+      });
+      return ;
+    }
+    
     const obj = {
       nombres, email, password
     }
@@ -49,6 +63,18 @@ export class UsuarioEdicionModalComponent implements OnInit {
 
   handleEdit() {
     const { nombres, email, password } = this.usuarioForm.value;
+
+    if ( !nombres || !email || !password ) {
+      const dialogRef2 = this.dialog.open(FormMensajeComponent, {
+        data: {
+          message: 'no pueden haber cambios vacios',
+          title: 'error',
+          closeMessage: 'Volver'
+        }
+      });
+      return ;
+    }
+
     const obj = {
       id_usuario: this.data.usuario.id_usuario, 
       nombres, email, password

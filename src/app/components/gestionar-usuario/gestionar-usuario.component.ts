@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { IUser } from 'src/app/app.model';
 import { AppService } from 'src/app/app.service';
+import { ConfirmModalComponent } from 'src/app/shared/confirm-modal/confirm-modal.component';
 import { UsuarioEdicionModalComponent } from '../usuario-edicion-modal/usuario-edicion-modal.component';
 
 @Component({
@@ -65,4 +66,34 @@ export class GestionarUsuarioComponent implements OnInit {
     })
   }
 
+  handleDelete(usuario: any) {
+    console.log('usuario', usuario)
+    const dialogRef = this.dialog.open(ConfirmModalComponent, {
+      width: '500px',
+      data: {
+        title: 'eliminar',
+        msj: 'estas seguro que quieres eliminar?'
+      }
+    })
+    dialogRef.componentInstance.eventEmit.subscribe((emit: any) => {
+      console.log('emit', emit);
+      // this.refreshTable();
+      // dialogRef.close();
+      if(emit.action == 1) {
+        const obj = {
+          id_usuario: usuario.id_usuario
+        }
+        this.appSrv.deleteUsuario(obj).subscribe(res => {
+          console.log('res', res);
+          this.refreshTable()
+
+        }, err => {
+          console.log('err', err);
+        })
+      }
+
+      dialogRef.close();
+    })
+
+  }
 }
