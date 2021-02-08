@@ -34,7 +34,7 @@ export class ObservarBoletaModalComponent implements OnInit {
   handleAnular() {
     const obj = {
       id_boleta: this.data.id_boleta,
-      estado: '3'
+      estado: '2'
     }
     this.appSrv.updateBoleta(obj).subscribe(res => {
       console.log('res', res);
@@ -49,12 +49,41 @@ export class ObservarBoletaModalComponent implements OnInit {
   handleFinalizar() {
     const obj = {
       id_boleta: this.data.id_boleta,
-      estado: '2'
+      estado: '1'
     }
     this.appSrv.updateBoleta(obj).subscribe(res => {
       console.log('res', res);
       this.eventEmit.emit(res);
       // this.dialogRef.close();
+    }, err => {
+      console.log('err', err);
+    })
+  }
+
+  handleAnularReclamo() {
+    const obj = {
+      id_boleta: this.data.id_boleta,
+      estado: '1'
+    }
+    this.appSrv.updateBoleta(obj).subscribe(res => {
+      console.log('res', res);
+      // this.dialogRef.close();
+      this.eventEmit.emit(res);
+
+    }, err => {
+      console.log('err', err);
+    })
+  }
+  handleFinRecllamo() {
+    const obj = {
+      id_boleta: this.data.id_boleta,
+      estado: '4'
+    }
+    this.appSrv.updateBoleta(obj).subscribe(res => {
+      console.log('res', res);
+      // this.dialogRef.close();
+      this.eventEmit.emit(res);
+
     }, err => {
       console.log('err', err);
     })

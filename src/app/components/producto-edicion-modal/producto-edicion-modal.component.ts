@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IProducto } from 'src/app/app.model';
 import { AppService } from 'src/app/app.service';
+import { FormMensajeComponent } from 'src/app/shared/form-mensaje/form-mensaje.component';
 
 @Component({
   selector: 'app-producto-edicion-modal',
@@ -18,6 +19,7 @@ export class ProductoEdicionModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private appSrv: AppService,
     public dialogRef: MatDialogRef<ProductoEdicionModalComponent>,
+    private dialog: MatDialog
   ) {
     this.productoForm = this.createForm(data.producto);
   }
@@ -35,6 +37,18 @@ export class ProductoEdicionModalComponent implements OnInit {
 
   handleCreate() {
     const { desc_producto, stock, precio } = this.productoForm.value;
+
+    if (!desc_producto || !stock || !precio){
+      const dialogRef2 = this.dialog.open(FormMensajeComponent, {
+        data: {
+          message: 'Verifica los campos vacios',
+          title: 'Mensaje',
+          closeMessage: 'Volver'
+        }
+      });
+      return ;
+    }
+
     const obj = {
       desc_producto, stock, precio
     }
@@ -49,6 +63,17 @@ export class ProductoEdicionModalComponent implements OnInit {
 
   handleEdit() {
     const { desc_producto, stock, precio } = this.productoForm.value;
+
+    if (!desc_producto || !stock || !precio){
+      const dialogRef2 = this.dialog.open(FormMensajeComponent, {
+        data: {
+          message: 'Verifica los campos vacios',
+          title: 'Mensaje',
+          closeMessage: 'Volver'
+        }
+      });
+      return ;
+    }
     const obj = {
       id_producto: this.data.producto.id_producto,
       desc_producto, stock, precio

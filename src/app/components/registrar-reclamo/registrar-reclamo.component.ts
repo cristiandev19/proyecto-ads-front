@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { AppService } from 'src/app/app.service';
 import { ConfirmModalComponent } from 'src/app/shared/confirm-modal/confirm-modal.component';
 import { MotivoReclamoModalComponent } from '../motivo-reclamo-modal/motivo-reclamo-modal.component';
 
@@ -39,23 +41,43 @@ const DATA = [
 })
 export class RegistrarReclamoComponent implements OnInit {
   displayedColumns: string[] = ['description','date','state', 'action'];
-  dataSource = DATA;
+  dataSource = new MatTableDataSource([]);
   searchForm: FormGroup;
-  
+  boletas: any[] = [];
+
   constructor(
     private fb: FormBuilder,
-    private dialog: MatDialog 
+    private dialog: MatDialog,
+    private appSrv: AppService
   ) {
     this.searchForm = this.fb.group({
       search: ['']
     });
   }
   
-  ngOnInit(): void { }
+  ngOnInit(): void {
+
+    this.appSrv.getBoletas().subscribe((res: any) => {
+      console.log('res', res);
+      this.dataSource.data = res.boletas;
+      this.boletas = res.boletas
+    }, err => {
+      console.log('err', err);
+    });
+  }
 
   handleSearch() {
-    const { search : filterValue} = this.searchForm.value();
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    const { search : filterValue } = this.searchForm.value;
+    // this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    this.appSrv.buscarBoleta(filterValue).subscribe((res: any) => {
+      console.log('res', res);
+      this.dataSource.data = res.boletas;
+      this.boletas = res.boletas;
+    }, err => {
+      console.log('err', err);
+    })
+    
   }
 
   handleModify(data: any) {
@@ -63,17 +85,25 @@ export class RegistrarReclamoComponent implements OnInit {
       width: '500px',
       data: {
         title: 'Estas seguro?',
-        msj: 'Estado de boleta de modificara etc etc etc'
+        msj: `Estado de boleta se modificara de ${data.desc_estado} a atendido/no reclamado`
       }
     });
 
+    dialog1.componentInstance.eventEmit.subscribe((event: any) => {
+      console.log('event', event);
+      if(event.action == 1) {
 
-    const dialog2 = this.dialog.open(MotivoReclamoModalComponent, {
-      width: '500px',
-      data: {
+        const dialog2 = this.dialog.open(MotivoReclamoModalComponent, {
+          width: '500px',
+          data: {
+            boleta: data
+          }
+        });
+        dialog1.close();
+      } else {
+        dialog1.close();
       }
-    });
-
+    })
   }
 }
 

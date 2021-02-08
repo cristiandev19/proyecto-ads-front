@@ -17,6 +17,7 @@ import { GestionarPrivilegiosComponent } from './components/gestionar-privilegio
 import { AgregarProductoComponent } from './components/agregar-producto/agregar-producto.component';
 import { RestartPasswordEmailComponent } from './components/restart-password-email/restart-password-email.component';
 import { AuthGuard2 } from './guards/auth2.guard';
+import { InformeInventarioComponent } from './components/informe-inventario/informe-inventario.component';
 
 const routes: Routes = [
   {
@@ -45,7 +46,8 @@ const routes: Routes = [
       { path: 'gestionar-usuario', component: GestionarUsuarioComponent, canActivate: [AuthGuard] },
       { path: 'reporte-inventario', component: ReporteInventarioComponent, canActivate: [AuthGuard] },
       { path: 'gestionar-privilegios', component: GestionarPrivilegiosComponent, canActivate: [AuthGuard] },
-      { path: 'agregar-producto', component: AgregarProductoComponent, canActivate: [AuthGuard] }
+      { path: 'agregar-producto', component: AgregarProductoComponent, canActivate: [AuthGuard] },
+      // { path: 'informe-inventario', component: InformeInventarioComponent, canActivate: [AuthGuard] }
     ],
     canActivate: [AuthGuard]
   },

@@ -1,11 +1,6 @@
 
 
 <div class="component-container">
-  
-  <div class="buttons-action">
-    <button mat-button color="secondary" (click)="handleGoHome()">Volver a principal</button>
-    <button mat-raised-button color="primary">Confirmar</button>
-  </div>
 
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-table">
@@ -53,4 +48,32 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+  
+  <div class="buttons-action">
+    <button mat-button color="secondary" (click)="handleGoHome()">Volver a principal</button>
+    <button mat-raised-button color="primary" (click)="visualizarVentas()">Visualizar ventas</button>
+
+    <form [formGroup]="fechasForm">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha Inicio</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="fecha_ini">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Fecha fin</mat-label>
+        <input matInput [matDatepicker]="picker2" formControlName="fecha_fin">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+      </mat-form-field>
+
+
+    </form>
+
+    <button mat-raised-button color="primary" (click)="clicked()">Imprimir informe</button>
+  </div>
+
 </div>

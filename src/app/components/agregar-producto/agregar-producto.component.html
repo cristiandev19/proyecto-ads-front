@@ -3,6 +3,15 @@
     <a mat-list-item routerLink="/admin/home" routerLinkActive="active">Home</a>
   </mat-nav-list>
 
+  <form [formGroup]="searchForm" class="nota-form">
+    <mat-form-field appesearcharance="fill" class="nota-form__search">
+      <mat-label>Search your product</mat-label>
+      <input matInput type="text" formControlName="search">
+    </mat-form-field>
+    <button mat-icon-button color="primary" (click)="handleSearch()">
+      <mat-icon>search</mat-icon>
+    </button>
+  </form>
   <button mat-raised-button color="primary" (click)="handleAgregarProducto()">Agregar producto</button>
 
   <mat-table [dataSource]="dataSource" class="mat-elevation-z8 full-table">
