@@ -1,8 +1,9 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AppService } from 'src/app/app.service';
+import { FormMensajeComponent } from 'src/app/shared/form-mensaje/form-mensaje.component';
 
 @Component({
   selector: 'app-crear-accion-modal',
@@ -18,7 +19,8 @@ export class CrearAccionModalComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private appSrv: AppService,
     public dialogRef: MatDialogRef<CrearAccionModalComponent>,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {
     this.accionForm = this.createForm();
 
@@ -39,13 +41,21 @@ export class CrearAccionModalComponent implements OnInit {
     const obj = {
       resumen,
       desc_accion,
-      ruta_accion: ''
+      ruta_accion: desc_accion
     };
     this.appSrv.insertAccion(obj).subscribe(res => {
       console.log('res', res)
-      this._snackBar.open(res.message, 'cerrar', {
-        duration: 2000,
+      const dialogRef2 = this.dialog.open(FormMensajeComponent, {
+        data: {
+          message: res.message,
+          title: 'Mensaje',
+          closeMessage: 'Volver'
+        }
       });
+      // this._snackBar.open(res.message, 'cerrar', {
+      //   duration: 2000,
+      // });
+      this.dialogRef.close();
     }, err => {
       this._snackBar.open(err.error.message, 'cerrar', {
         duration: 2000,
