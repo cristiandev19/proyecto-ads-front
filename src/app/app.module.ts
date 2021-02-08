@@ -19,7 +19,8 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatSelectModule} from '@angular/material/select';
-import {MatSnackBarModule} from '@angular/material/snack-bar'; 
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 // My components
 import { LoginComponent } from './components/login/login.component';
 import { RestartPasswordComponent } from './components/restart-password/restart-password.component';
@@ -50,6 +51,8 @@ import { EmitirBoletaModalComponent } from './components/emitir-boleta-modal/emi
 import { ObservarBoletaModalComponent } from './components/observar-boleta-modal/observar-boleta-modal.component';
 import { RestartPasswordEmailComponent } from './components/restart-password-email/restart-password-email.component';
 import { UsuarioModalComponent } from './components/usuario-modal/usuario-modal.component';
+import { MatNativeDateModule } from '@angular/material/core';
+import { InformeInventarioComponent } from './components/informe-inventario/informe-inventario.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +84,8 @@ import { UsuarioModalComponent } from './components/usuario-modal/usuario-modal.
     EmitirBoletaModalComponent,
     ObservarBoletaModalComponent,
     RestartPasswordEmailComponent,
-    UsuarioModalComponent
+    UsuarioModalComponent,
+    InformeInventarioComponent
   ],
   imports: [
     BrowserModule,
@@ -102,7 +106,9 @@ import { UsuarioModalComponent } from './components/usuario-modal/usuario-modal.
     MatSnackBarModule,
     SharedModule,
     MatRadioModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   exports: [
     AppRoutingModule

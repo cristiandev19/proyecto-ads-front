@@ -112,6 +112,12 @@ export class AppService {
     return this._http.get(`${this.URL_BACK}/boletas`, { params });
   }
 
+  getBoletasFiltro(fecha: string) {
+    const params = new HttpParams()
+    .append('fecha', fecha);
+    return this._http.get(`${this.URL_BACK}/boletas-filtro`, { params });
+  }
+
   detalleBoleta(id_boleta: number) {
     const params = new HttpParams()
       .append('id_boleta', `${id_boleta}`);
@@ -145,4 +151,28 @@ export class AppService {
     return this._http.post(`${this.URL_BACK}/update-rol`, obj, this.httpOptions);
   }
 
+  searchProduct(desc_producto: string) {
+    const params = new HttpParams()
+      .append('desc_producto', desc_producto);
+    return this._http.get(`${this.URL_BACK}/search-producto`, { params });
+  }
+
+  boletasFiltro(fecha_ini: string, fecha_fin: string) {
+    const params = new HttpParams()
+      .append('fecha_ini', fecha_ini)
+      .append('fecha_fin', fecha_fin);
+    return this._http.get(`${this.URL_BACK}/boletas-filtro`, { params });
+  }
+
+  insertReclamo(obj: any) {
+    return this._http.post(`${this.URL_BACK}/insert-reclamo`, obj, this.httpOptions);
+  }
+
+ 
+  buscarBoleta(boleta: string) {
+    const params = new HttpParams()
+      .append('boleta', boleta);
+    return this._http.get(`${this.URL_BACK}/buscar-boleta`, { params });
+  }
+  
 }
