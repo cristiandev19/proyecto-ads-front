@@ -57,7 +57,7 @@ export class RegistrarReclamoComponent implements OnInit {
   
   ngOnInit(): void {
 
-    this.appSrv.getBoletas().subscribe((res: any) => {
+    this.appSrv.getBoletas1().subscribe((res: any) => {
       this.dataSource.data = res.boletas;
       this.boletas = res.boletas
     }, err => {

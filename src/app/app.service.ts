@@ -112,11 +112,23 @@ export class AppService {
     return this._http.get(`${this.URL_BACK}/boletas`, { params });
   }
 
+  getBoletas1() {
+    const params = new HttpParams();
+    return this._http.get(`${this.URL_BACK}/boletas1`, { params });
+  }
+
   getBoletasFiltro(fecha: string) {
     const params = new HttpParams()
     .append('fecha', fecha);
     return this._http.get(`${this.URL_BACK}/boletas-filtro`, { params });
   }
+
+  // boletasFiltro2
+  // getBoletasFiltro(fecha: string) {
+  //   const params = new HttpParams()
+  //   .append('fecha', fecha);
+  //   return this._http.get(`${this.URL_BACK}/boletas-filtro`, { params });
+  // }
 
   detalleBoleta(id_boleta: number) {
     const params = new HttpParams()
@@ -157,11 +169,11 @@ export class AppService {
     return this._http.get(`${this.URL_BACK}/search-producto`, { params });
   }
 
-  boletasFiltro(fecha_ini: string, fecha_fin: string) {
+  boletasFiltro2(fecha_ini: string, fecha_fin: string) {
     const params = new HttpParams()
       .append('fecha_ini', fecha_ini)
       .append('fecha_fin', fecha_fin);
-    return this._http.get(`${this.URL_BACK}/boletas-filtro`, { params });
+    return this._http.get(`${this.URL_BACK}/boletas-filtro2`, { params });
   }
 
   insertReclamo(obj: any) {

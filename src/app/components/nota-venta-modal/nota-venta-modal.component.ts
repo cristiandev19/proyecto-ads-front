@@ -63,6 +63,7 @@ export class NotaVentaModalComponent implements OnInit {
       total
     }
     this.appSrv.emitirNotaVenta(obj).subscribe(res => {
+      console.log('res', res)  
 
       const dialogRef = this.dialog.open(FormMensajeComponent, {
         data: {

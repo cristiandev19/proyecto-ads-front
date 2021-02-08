@@ -164,7 +164,7 @@ export class InformeBalanceComponent implements OnInit {
       return ;
     }
 
-    this.appSrv.boletasFiltro(fec_ini, fec_fin).subscribe((res: any) => {
+    this.appSrv.boletasFiltro2(fec_ini, fec_fin).subscribe((res: any) => {
       this.dataSource.data = res.boletas;
       this.boletas = res.boletas;
     }, err => {
