@@ -58,7 +58,6 @@ export class CrearAccionModalComponent implements OnInit {
 
     
     this.appSrv.insertAccion(obj).subscribe(res => {
-      console.log('res', res)
       const dialogRef2 = this.dialog.open(FormMensajeComponent, {
         data: {
           message: res.message,
