@@ -40,21 +40,17 @@ export class ReporteInventarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.appSrv.getProductos().subscribe(res => {
-      console.log('res', res)
       this.dataSource.data = res.productos;
       this.productos = res.productos;
     }, err => {
-      console.log('err', err);
     })
   }
 
   // refreshTable() {
   //   this.appSrv.getProductos().subscribe(res => {
-  //     console.log('res', res)
   //     this.productos = res.productos;
   //     this.dataSource.data = res.productos;
   //   }, err => {
-  //     console.log('err', err)
   //   })
 
   // }
@@ -67,13 +63,11 @@ export class ReporteInventarioComponent implements OnInit {
       //   return (item.desc_producto.toLowerCase()).includes(value.toLowerCase())
       // });
       this.appSrv.searchProduct(value).subscribe((res: any) => {
-        console.log('res', res);
         // this.productos = res.productos;
         this.productos = res.productos;
         this.dataSource.data = res.productos;
   
       }, err => {
-        console.log('hola');
       })
     } else {
       // this.productos_vista = this.productos; 
@@ -115,7 +109,6 @@ export class ReporteInventarioComponent implements OnInit {
       body: data,
       theme: 'plain',
       didDrawCell: (data: any) => {
-        console.log(data.column.index)
       }
     })
 

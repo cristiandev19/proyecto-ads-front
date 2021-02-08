@@ -88,11 +88,9 @@ export class InformeBalanceComponent implements OnInit {
 
   ngOnInit(): void {
     this.appSrv.getBoletas().subscribe((res: any) => {
-      console.log('res', res);
       this.dataSource.data = res.boletas;
       this.boletas = res.boletas;
     }, err => {
-      console.log('err', err);
     });
   }
 
@@ -124,7 +122,6 @@ export class InformeBalanceComponent implements OnInit {
       body: data,
       theme: 'plain',
       didDrawCell: (data: any) => {
-        console.log(data.column.index)
       }
     })
 
@@ -154,7 +151,6 @@ export class InformeBalanceComponent implements OnInit {
     const fec_ini = fecha_ini ? this.convertDateToString(fecha_ini) : '';
     const fec_fin = fecha_fin ? this.convertDateToString(fecha_fin) : '';
 
-    console.log('fec_ini fec_fin', fec_ini, fec_fin)
 
     if (!fec_ini || !fec_fin) {
 
@@ -169,11 +165,9 @@ export class InformeBalanceComponent implements OnInit {
     }
 
     this.appSrv.boletasFiltro(fec_ini, fec_fin).subscribe((res: any) => {
-      console.log('res', res);
       this.dataSource.data = res.boletas;
       this.boletas = res.boletas;
     }, err => {
-      console.log('err', err);
     })
   }
 

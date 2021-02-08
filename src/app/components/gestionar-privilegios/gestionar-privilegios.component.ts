@@ -52,7 +52,6 @@ export class GestionarPrivilegiosComponent implements OnInit {
     const codigoUsuario = this.codigoUsuario.value;
 
     this.appSrv.searchUsuario(codigoUsuario).subscribe((res: any) => {
-      console.log('res', res);
       if (res.usuario.length > 0) {
         const dialogRef = this.dialog.open(UsuarioModalComponent, {
           width: '600px',
@@ -62,7 +61,6 @@ export class GestionarPrivilegiosComponent implements OnInit {
         })
       }
     }, err => {
-      console.log('err', err);
     })
   }
 

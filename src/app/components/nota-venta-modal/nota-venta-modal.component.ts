@@ -54,18 +54,15 @@ export class NotaVentaModalComponent implements OnInit {
           cantidad: nv.cantidad
         }
       });
-    console.log('nota_ventas', nota_ventas)
     const total = (this.data.nota_ventas as INotaVenta[]).reduce((prev, curr, idx) => {
       const calc = (curr.cantidad * +curr.precio);
       return prev + calc
     }, 0);
-    console.log('total', total);
     const obj = {
       nota_ventas,
       total
     }
     this.appSrv.emitirNotaVenta(obj).subscribe(res => {
-      console.log('res', res)
 
       const dialogRef = this.dialog.open(FormMensajeComponent, {
         data: {
@@ -79,7 +76,6 @@ export class NotaVentaModalComponent implements OnInit {
       });
       this.dialogRef.close();
     }, err => {
-      console.log('err', err);
     })
   }
 

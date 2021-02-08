@@ -47,15 +47,12 @@ export class    MotivoReclamoModalComponent implements OnInit {
   ngOnInit(): void { }
 
   handleSi() {
-    console.log('tasd', this.reclamoForm.value);
     const {option} = this.reclamoForm.value
-    console.log('id_boleta', this.data.boleta.id_boleta)
     const obj = {
       _id_boleta: this.data.boleta.id_boleta,
       desc_reclamo: option
     }
     this.appSrv.insertReclamo(obj).subscribe((res: any) => {
-      console.log('res', res)
       const dialogRef2 = this.dialog.open(FormMensajeComponent, {
         data: {
           message: 'El estado de la boleta ha sido modificado',
@@ -72,7 +69,6 @@ export class    MotivoReclamoModalComponent implements OnInit {
           closeMessage: 'Volver'
         }
       });
-      console.log('err', err);
       this.dialogRef.close();
     })
   }

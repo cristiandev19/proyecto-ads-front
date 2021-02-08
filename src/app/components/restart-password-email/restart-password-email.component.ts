@@ -37,7 +37,6 @@ export class RestartPasswordEmailComponent implements OnInit {
       return ;
     }
     this.appSrv.validarEmail(email).subscribe(res => {
-      console.log('res', res)
       const dialogRef2 = this.dialog.open(FormMensajeComponent, {
         data: {
           message: 'Te enviamos un correo para reestablecer tu contra',
@@ -47,7 +46,6 @@ export class RestartPasswordEmailComponent implements OnInit {
       });
       this.email.setValue('');
     }, err => {
-      console.log(err);
       const dialogRef2 = this.dialog.open(FormMensajeComponent, {
         data: {
           message: err.error.message,

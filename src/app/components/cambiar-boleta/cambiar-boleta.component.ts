@@ -36,9 +36,7 @@ export class CambiarBoletaComponent implements OnInit {
     this.dataSource.data = [];
     this.boletas = [];
     // this.appSrv.getBoletas().subscribe((res: any) => {
-    //   console.log('res', res);
     // }, err => {
-    //   console.log('err', err);
     // });
   }
 
@@ -47,11 +45,9 @@ export class CambiarBoletaComponent implements OnInit {
     const fechaFormated = this.convertDateToString(fecha);
 
     this.appSrv.getBoletasFiltro(fechaFormated).subscribe((res: any) => {
-      console.log('res', res);
       this.dataSource.data = res.boletas;
       this.boletas = res.boletas
     }, err => {
-      console.log('err', err);
     });
   }
 
@@ -61,8 +57,7 @@ export class CambiarBoletaComponent implements OnInit {
   }
 
   handleModify(data: any) {
-    console.log('data', data);
-    if (data.estado == '3') {
+    if (data.estado == '0') {
       const dialogRef = this.dialog.open(ObservarBoletaModalComponent, {
         width: '500px',
         data: {
@@ -76,7 +71,7 @@ export class CambiarBoletaComponent implements OnInit {
         this.refreshTable();
         this.fechaForm.controls.fecha.setValue('');
       })
-    } else if (data.estado == '0') {
+    } else if (data.estado == '3') {
       const dialogRef = this.dialog.open(ObservarBoletaModalComponent, {
         width: '500px',
         data: {

@@ -21,13 +21,10 @@ export class ObservarBoletaModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('this.data', this.data);
     // this.dataSource.data = this.data.nota_ventas;
     this.appSrv.detalleBoleta(this.data.id_boleta).subscribe((res: any) => {
-      console.log('res', res);
       this.dataSource.data = res.detalle_boleta;
     }, err => {
-      console.log('err', err)
     })
   }
 
@@ -37,12 +34,10 @@ export class ObservarBoletaModalComponent implements OnInit {
       estado: '2'
     }
     this.appSrv.updateBoleta(obj).subscribe(res => {
-      console.log('res', res);
       // this.dialogRef.close();
       this.eventEmit.emit(res);
 
     }, err => {
-      console.log('err', err);
     })
   }
 
@@ -52,11 +47,9 @@ export class ObservarBoletaModalComponent implements OnInit {
       estado: '1'
     }
     this.appSrv.updateBoleta(obj).subscribe(res => {
-      console.log('res', res);
       this.eventEmit.emit(res);
       // this.dialogRef.close();
     }, err => {
-      console.log('err', err);
     })
   }
 
@@ -66,12 +59,10 @@ export class ObservarBoletaModalComponent implements OnInit {
       estado: '1'
     }
     this.appSrv.updateBoleta(obj).subscribe(res => {
-      console.log('res', res);
       // this.dialogRef.close();
       this.eventEmit.emit(res);
 
     }, err => {
-      console.log('err', err);
     })
   }
   handleFinRecllamo() {
@@ -80,12 +71,10 @@ export class ObservarBoletaModalComponent implements OnInit {
       estado: '4'
     }
     this.appSrv.updateBoleta(obj).subscribe(res => {
-      console.log('res', res);
       // this.dialogRef.close();
       this.eventEmit.emit(res);
 
     }, err => {
-      console.log('err', err);
     })
   }
 }

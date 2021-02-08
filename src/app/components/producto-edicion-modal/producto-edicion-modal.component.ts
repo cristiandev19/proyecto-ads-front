@@ -53,10 +53,8 @@ export class ProductoEdicionModalComponent implements OnInit {
       desc_producto, stock, precio
     }
     this.appSrv.insertProducto(obj).subscribe(res => {
-      console.log('res', res)
       this.eventEmit.emit(res);
     }, err => {
-      console.log('err', err)
     });
     // insertProducto
   }
@@ -79,10 +77,8 @@ export class ProductoEdicionModalComponent implements OnInit {
       desc_producto, stock, precio
     }
     this.appSrv.updateProducto(obj).subscribe(res => {
-      console.log('res', res);
       this.eventEmit.emit(res);
     }, err => {
-      console.log('err', err);
     })
     // updateProducto
   }

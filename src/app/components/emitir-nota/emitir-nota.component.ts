@@ -29,7 +29,6 @@ export class EmitirNotaComponent implements OnInit {
     this.searchForm = this.fb.group({
       search: ['']
     });
-    console.log('llegad?')
 
     this.searchForm.valueChanges.subscribe(form => {
     })
@@ -47,10 +46,8 @@ export class EmitirNotaComponent implements OnInit {
       //   return (item.desc_producto.toLowerCase()).includes(value.toLowerCase())
       // });
       this.appSrv.searchProduct(value).subscribe((res: any) => {
-        console.log('res', res);
         this.productos = res.productos;
       }, err => {
-        console.log('hola');
       })
     } else {
       // this.productos_vista = this.productos; 
@@ -67,7 +64,6 @@ export class EmitirNotaComponent implements OnInit {
   }
 
   handleOpenDetailModal(data: any) {
-    console.log('data', data)
     const dialogRef = this.dialog.open(DetalleProductoModalComponent, {
       width: '500px',
       data: {
@@ -75,11 +71,9 @@ export class EmitirNotaComponent implements OnInit {
       }
     })
     dialogRef.componentInstance.eventEmit.subscribe((event: INotaVenta) => {
-      console.log('event', event)
       const [itemListaProducto] : INotaVenta[] = this.lista_producto
         .filter(lp => lp.id_producto == event.id_producto);
 
-      console.log('itemListaProducto', itemListaProducto)
       if (itemListaProducto) {
         this.lista_producto = this.lista_producto.map(lp => {
           if (lp.id_producto == event.id_producto) {
@@ -102,7 +96,6 @@ export class EmitirNotaComponent implements OnInit {
       }
 
       dialogRef.close();
-      console.log('this.lista_producto', this.lista_producto);
 
       this.openNotaVentaModal();
 
@@ -127,7 +120,6 @@ export class EmitirNotaComponent implements OnInit {
 
   openNotaVentaModal() {
     // this.moda NotaVentaModalComponent
-    console.log('nota venta modal')
     const dialogRef = this.dialog.open(NotaVentaModalComponent, {
       width: '600px',
       disableClose: false,

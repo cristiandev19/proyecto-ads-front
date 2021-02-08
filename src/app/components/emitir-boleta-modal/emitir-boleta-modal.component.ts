@@ -51,7 +51,6 @@ export class EmitirBoletaModalComponent implements OnInit {
       medio_pago: medioPago
     }
     this.appSrv.emitirBoleta(obj).subscribe((res: any) => {
-      console.log('res', res);
 
       if (res?.boleta?.error) {
         this.dialogRef.close();
@@ -75,7 +74,6 @@ export class EmitirBoletaModalComponent implements OnInit {
       }
 
     }, err => {
-      console.log('err', err);
     })
   }
 }

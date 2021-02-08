@@ -18,7 +18,6 @@ export class UsuarioModalComponent implements OnInit {
     private appSrv: AppService,
     private dialog: MatDialog
   ) {
-    console.log('data', this.data);
     this.rolSelect = new FormControl(this.data.usuario._id_rol, Validators.required);
     // this.medioPago = new FormControl('', [
       // Validators.required
@@ -27,19 +26,16 @@ export class UsuarioModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.appSrv.getRoles().subscribe((res: any) => {
-      console.log('res', res)
       this.roles = res.roles;
 
       this.rolSelect.setValue(this.data.usuario._id_rol);
     }, err => {
-      console.log('err', err);
     })
   }
 
   handleAceptar() {
     // handleAceptar
     const rol = this.rolSelect.value;
-    console.log('rol', rol)
 
     const obj = {
       rol: rol,
@@ -47,7 +43,6 @@ export class UsuarioModalComponent implements OnInit {
     }
 
     this.appSrv.updateRol(obj).subscribe(res => {
-      console.log('res', res);
       const dialogRef2 = this.dialog.open(FormMensajeComponent, {
         data: {
           message: 'Se cambio el rol exitosamente',
@@ -57,7 +52,6 @@ export class UsuarioModalComponent implements OnInit {
       });
       this.dialogRef.close();
     }, err => {
-      console.log('err', err);
     })
   }
 }

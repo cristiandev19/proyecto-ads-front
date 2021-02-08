@@ -36,7 +36,6 @@ export class CreateRolModalComponent implements OnInit {
 
   handleCreateRol() {
     const { desc_rol, resumen } = this.rolForm.value;
-    console.log({desc_rol, resumen})
     if ( !desc_rol || !resumen ) {
       const dialogRef2 = this.dialog.open(FormMensajeComponent, {
         data: {
@@ -53,11 +52,9 @@ export class CreateRolModalComponent implements OnInit {
       desc_rol, resumen
     }
     this.appSrv.insertRol(obj).subscribe(res => {
-      console.log('res', res);
       this.eventEmit.emit(res);
       // this.dialogRef.close();
     }, err => {
-      console.log('err', err);
     })
   }
 }

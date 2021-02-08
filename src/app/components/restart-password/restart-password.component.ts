@@ -64,9 +64,7 @@ export class RestartPasswordComponent implements OnInit {
       password: pass.password,
       id_usuario: this.id_usuario
     }
-    console.log('obj', obj)
     this.appSrv.updatePass(obj).subscribe(res => {
-      console.log('res', res)
       const dialogRef2 = this.dialog.open(FormMensajeComponent, {
         data: {
           message: 'Se actualizo correctamente',
@@ -76,7 +74,6 @@ export class RestartPasswordComponent implements OnInit {
       });
       this.router.navigate(['/auth/login'])
     }, err => {
-      console.log('err', err);
     })
   }
 

@@ -26,10 +26,8 @@ export class GestionarUsuarioComponent implements OnInit {
 
   refreshTable() {
     this.appSrv.getUsuarios().subscribe((res: any) => {
-      console.log('res', res)
       this.dataSource.data = res.usuarios;
     }, err => {
-      console.log('err', err);
     })
   }
 
@@ -67,7 +65,6 @@ export class GestionarUsuarioComponent implements OnInit {
   }
 
   handleDelete(usuario: any) {
-    console.log('usuario', usuario)
     const dialogRef = this.dialog.open(ConfirmModalComponent, {
       width: '500px',
       data: {
@@ -76,7 +73,6 @@ export class GestionarUsuarioComponent implements OnInit {
       }
     })
     dialogRef.componentInstance.eventEmit.subscribe((emit: any) => {
-      console.log('emit', emit);
       // this.refreshTable();
       // dialogRef.close();
       if(emit.action == 1) {
@@ -84,11 +80,9 @@ export class GestionarUsuarioComponent implements OnInit {
           id_usuario: usuario.id_usuario
         }
         this.appSrv.deleteUsuario(obj).subscribe(res => {
-          console.log('res', res);
           this.refreshTable()
 
         }, err => {
-          console.log('err', err);
         })
       }
 

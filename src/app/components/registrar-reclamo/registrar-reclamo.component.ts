@@ -58,11 +58,9 @@ export class RegistrarReclamoComponent implements OnInit {
   ngOnInit(): void {
 
     this.appSrv.getBoletas().subscribe((res: any) => {
-      console.log('res', res);
       this.dataSource.data = res.boletas;
       this.boletas = res.boletas
     }, err => {
-      console.log('err', err);
     });
   }
 
@@ -71,11 +69,9 @@ export class RegistrarReclamoComponent implements OnInit {
     // this.dataSource.filter = filterValue.trim().toLowerCase();
 
     this.appSrv.buscarBoleta(filterValue).subscribe((res: any) => {
-      console.log('res', res);
       this.dataSource.data = res.boletas;
       this.boletas = res.boletas;
     }, err => {
-      console.log('err', err);
     })
     
   }
@@ -90,7 +86,6 @@ export class RegistrarReclamoComponent implements OnInit {
     });
 
     dialog1.componentInstance.eventEmit.subscribe((event: any) => {
-      console.log('event', event);
       if(event.action == 1) {
 
         const dialog2 = this.dialog.open(MotivoReclamoModalComponent, {

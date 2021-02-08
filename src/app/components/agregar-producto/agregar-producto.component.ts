@@ -38,17 +38,14 @@ export class AgregarProductoComponent implements OnInit {
       this.productos = [];
 
     // this.appSrv.getProductos().subscribe(res => {
-    //   console.log('res', res);
     //   this.dataSource.data = res.productos;
     //   // dataSource
     //   // productos
     // }, err => {
-    //   console.log('err', err);
     // });
   }
 
   handleAgregarProducto() {
-    console.log('handleAgregarProducto')
     const producto : IProducto = {
       desc_producto: '',
       id_producto: 0,
@@ -109,12 +106,10 @@ export class AgregarProductoComponent implements OnInit {
           id_producto: producto.id_producto
         }
         this.appSrv.deleteProducto(obj).subscribe(res => {
-          console.log('res', res);
           dialogRef.close();
           this.refreshTable();
         }, err => {
           dialogRef.close();
-          console.log('err', err);
         })
       } else {
         dialogRef.close();
@@ -130,12 +125,10 @@ export class AgregarProductoComponent implements OnInit {
       //   return (item.desc_producto.toLowerCase()).includes(value.toLowerCase())
       // });
       this.appSrv.searchProduct(value).subscribe((res: any) => {
-        console.log('res', res);
         // this.productos = res.productos;
         this.dataSource.data = res.productos;
         this.productos = res.productos;
       }, err => {
-        console.log('hola');
       })
     } else {
       this.dataSource.data = [];

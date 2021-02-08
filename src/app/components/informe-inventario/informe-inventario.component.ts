@@ -32,11 +32,9 @@ export class InformeInventarioComponent implements OnInit {
 
   refreshTable() {
     this.appSrv.getProductos().subscribe(res => {
-      console.log('res', res)
       this.productos = res.productos;
       this.dataSource.data = res.productos;
     }, err => {
-      console.log('err', err)
     })
 
   }
@@ -64,7 +62,6 @@ export class InformeInventarioComponent implements OnInit {
       body: data,
       theme: 'plain',
       didDrawCell: (data: any) => {
-        console.log(data.column.index)
       }
     })
 

@@ -21,17 +21,14 @@ export class HomeComponent implements OnInit {
     this.user = JSON.parse(user);
 
     this.appSrv.getAccionesXRol(this.user._id_rol).subscribe((res: any) => {
-      console.log('res', res);
       this.acciones = res.acciones;
     }, err => {
-      console.log('err', err);
     })
   }
 
   ngOnInit(): void { }
 
   handleLogout() {
-    console.log('entrooo')
     localStorage.removeItem('user');
 
     this.router.navigate(['/auth/login'])

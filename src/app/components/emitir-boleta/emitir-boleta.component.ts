@@ -28,10 +28,8 @@ export class EmitirBoletaComponent implements OnInit {
   ngOnInit(): void { }
 
   handleBuscar() {
-    console.log('hola')
     const nota_venta = this.buscarBoleta.value;
     this.appSrv.buscarNotaVenta(nota_venta).subscribe((res: any) => {
-      console.log('res', res);
 
       if ((res.nota_venta as any[]).length > 0) {
         const dialogRef = this.dialog.open(EmitirBoletaModalComponent, {
@@ -51,7 +49,6 @@ export class EmitirBoletaComponent implements OnInit {
         });
       }
     }, err => {
-      console.log('err', err);
     })
     // EmitirBoletaModalComponent
   }

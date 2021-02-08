@@ -54,10 +54,8 @@ export class UsuarioEdicionModalComponent implements OnInit {
       nombres, email, password
     }
     this.appSrv.createUsuario(obj).subscribe(res => {
-      console.log('res', res);
       this.eventEmit.emit(res);
     }, err => {
-      console.log('err', err);
     })
   }
 
@@ -79,12 +77,9 @@ export class UsuarioEdicionModalComponent implements OnInit {
       id_usuario: this.data.usuario.id_usuario, 
       nombres, email, password
     }
-    // console.log('nombres, email, password', nombres, email, password)
     this.appSrv.updateUsuario(obj).subscribe(res => {
-      console.log('res', res);
       this.eventEmit.emit(res);
     }, err => {
-      console.log('err', err);
     })
   }
 }
