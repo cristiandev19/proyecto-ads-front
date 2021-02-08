@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { IProducto } from 'src/app/app.model';
+import { FormMensajeComponent } from 'src/app/shared/form-mensaje/form-mensaje.component';
 
 const DETALLES = [
   {
@@ -39,7 +40,8 @@ export class DetalleProductoModalComponent implements OnInit {
   cantidad: FormControl;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialog: MatDialog
   ) {
     this.producto = data.producto;
 
@@ -54,7 +56,21 @@ export class DetalleProductoModalComponent implements OnInit {
   ngOnInit(): void { }
 
   handleAgregar() {
+
     const cantidad = this.cantidad.value;
+
+    if (this.cantidad.pristine || this.cantidad.invalid) {
+      const dialogRef = this.dialog.open(FormMensajeComponent, {
+        data: {
+          message: 'Campo vacio',
+          title: 'error',
+          closeMessage: 'aceptar'
+        }
+      });
+      return ;
+    }
+
+
     this.eventEmit.emit({
       ...this.producto,
       cantidad: +cantidad
