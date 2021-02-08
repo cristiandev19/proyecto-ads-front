@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { INotaVenta, IProducto } from 'src/app/app.model';
 import { AppService } from 'src/app/app.service';
+import { FormMensajeComponent } from 'src/app/shared/form-mensaje/form-mensaje.component';
 import { DetalleProductoModalComponent } from '../detalle-producto-modal/detalle-producto-modal.component';
 import { NotaVentaModalComponent } from '../nota-venta-modal/nota-venta-modal.component';
 
@@ -31,38 +32,37 @@ export class EmitirNotaComponent implements OnInit {
     console.log('llegad?')
 
     this.searchForm.valueChanges.subscribe(form => {
-      // console.log("🚀 ~ file: emitir-nota.component.ts ~ line 37 ~ EmitirNotaComponent ~ form", form)
-      // if(form.search) {
-      //   this.productos_vista = this.productos.filter(item => {
-      //     return (item.name.toLowerCase()).includes(form.search.toLowerCase())
-      //   });
-      // } else {
-      //   this.productos_vista = this.productos; 
-      // }
     })
   }
 
   ngOnInit(): void {
-    this.refreshTable();
   }
   refreshTable() {
-    this.appSrv.getProductos().subscribe(res => {
-      console.log('res', res)
-      this.productos = res.productos;
-      this.productos_vista = res.productos;
-    }, err => {
-      console.log('err', err)
-    })
   }
-  
+
   handleSearch() {
     const { search : value } = this.searchForm.value;
     if(value) {
-      this.productos_vista = this.productos.filter(item => {
-        return (item.desc_producto.toLowerCase()).includes(value.toLowerCase())
-      });
+      // this.productos_vista = this.productos.filter(item => {
+      //   return (item.desc_producto.toLowerCase()).includes(value.toLowerCase())
+      // });
+      this.appSrv.searchProduct(value).subscribe((res: any) => {
+        console.log('res', res);
+        this.productos = res.productos;
+      }, err => {
+        console.log('hola');
+      })
     } else {
-      this.productos_vista = this.productos; 
+      // this.productos_vista = this.productos; 
+      this.productos = [];
+
+      const dialogRef = this.dialog.open(FormMensajeComponent, {
+        data: {
+          message: 'Campo vacio',
+          title: 'error',
+          closeMessage: 'ok'
+        }
+      });
     }
   }
 
